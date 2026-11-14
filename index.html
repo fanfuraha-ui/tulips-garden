@@ -972,8 +972,7 @@ $$("#eventForm,#reserveForm").forEach(f=>f.addEventListener("submit",e=>{
   const s=$(".success",f);
   s.innerHTML=`<strong>Opening WhatsApp...</strong><p>If it did not open, tap below to send your ${f.dataset.title.toLowerCase()} to us on WhatsApp. Or call <b>${CONFIG.phone}</b>.</p><a class="btn btn-wa btn-sm" target="_blank" rel="noopener" href="${wa(msg)}">Send on WhatsApp</a>`;
   s.classList.add("show");
-  const w=window.open(wa(msg),"_blank","noopener");
-  if(!w) location.href=wa(msg);
+  window.location.href=wa(msg);
 }));
 $("#newsForm").addEventListener("submit",e=>{
   e.preventDefault(); const v=$("#n-email").value;
