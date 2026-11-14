@@ -970,8 +970,10 @@ $$("#eventForm,#reserveForm").forEach(f=>f.addEventListener("submit",e=>{
   const lines=$$("input,select,textarea",f).filter(i=>i.value).map(i=>`${i.name}: ${i.value}`);
   const msg=`Hi Tulips Garden\n${f.dataset.title}\n\n${lines.join("\n")}`;
   const s=$(".success",f);
-  s.innerHTML=`<strong>Almost done!</strong><p>Tap below to send your ${f.dataset.title.toLowerCase()} to us on WhatsApp. Or call <b>${CONFIG.phone}</b>.</p><a class="btn btn-wa btn-sm" target="_blank" rel="noopener" href="${wa(msg)}">Send on WhatsApp</a>`;
+  s.innerHTML=`<strong>Opening WhatsApp...</strong><p>If it did not open, tap below to send your ${f.dataset.title.toLowerCase()} to us on WhatsApp. Or call <b>${CONFIG.phone}</b>.</p><a class="btn btn-wa btn-sm" target="_blank" rel="noopener" href="${wa(msg)}">Send on WhatsApp</a>`;
   s.classList.add("show");
+  const w=window.open(wa(msg),"_blank","noopener");
+  if(!w) location.href=wa(msg);
 }));
 $("#newsForm").addEventListener("submit",e=>{
   e.preventDefault(); const v=$("#n-email").value;
