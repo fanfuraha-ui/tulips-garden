@@ -638,7 +638,7 @@ a.map{display:block;text-decoration:none;color:inherit}
       <div class="menu-card reveal">
         <div class="menu-tabs" role="tablist" id="menuTabs"></div>
         <ul class="menu-list" id="menuList"></ul>
-        <p class="menu-note">Prices are placeholders. Ask our team for today's menu.</p>
+        <p class="menu-note">Prices in Kenya Shillings (KSh). Menu and prices may change, ask our team for today's specials.</p>
         <a class="btn btn-wa" style="margin-top:1.3rem" data-wa="Hi Tulips Garden, I'd like to place a food order." target="_blank" rel="noopener">Order via WhatsApp</a>
       </div>
       <div class="menu-vids reveal" data-group="food"></div>
@@ -877,10 +877,71 @@ const CONFIG = {
       .map((id,i)=>({id, cap:["Garden views","Golden hour","Poolside","Table for the family","Weekend crowd","Celebrations","Lush greens","Good times","Kids at play","Evening lights","Chill zone","Moments"][i], t:"abcdef"[i%6]}))
   },
   menu: {
-    "Grills": [["Nyama Choma (goat) ½ kg","Served with kachumbari & ugali","KSh [ ]"],["Nyama Choma (beef) ½ kg","Charcoal-grilled, house seasoning","KSh [ ]"],["Grilled Chicken (quarter)","With fries or ugali","KSh [ ]"]],
-    "Fries": [["Pan Fry","Tender meat pan-fried with onions & peppers","KSh [ ]"],["Maji Maji Pan Fry","Our saucy signature pan fry","KSh [ ]"],["Chicken Wet Fry","Rich tomato & dhania stew","KSh [ ]"]],
-    "Brunch": [["Family Brunch Platter","Eggs, sausages, toast, fruit & tea","KSh [ ]"],["Karibuni Lunch","Daily lunch special","KSh [ ]"]],
-    "Drinks": [["Fresh Juice","Passion, mango or mixed","KSh [ ]"],["Sodas & Water","Assorted","KSh [ ]"],["Tea / Coffee","Kenyan blend","KSh [ ]"]]
+    "Breakfast": [
+      ["Tulips Full Breakfast","2 eggs your way, 2 sausages, crispy bacon & toast, with tea, coffee or hot chocolate","KSh 850"],
+      ["Tulips Mini Breakfast","Toast, 2 eggs & 1 sausage, with tea, coffee or hot chocolate","KSh 450"],
+      ["Spanish Omelette","","KSh 200"],
+      ["Fried / Boiled Eggs","","KSh 150"],
+      ["Bacon","","KSh 350"],
+      ["Plantains","","KSh 400"],
+      ["Pancakes (pair)","","KSh 100"]
+    ],
+    "Snacks": [
+      ["Sausages (2)","","KSh 150"],
+      ["Samosas (2)","","KSh 150"],
+      ["Choma Sausages","","KSh 150"],
+      ["Special Choma Sausages","","KSh 200"],
+      ["Burger","","KSh 650"],
+      ["Chicken Wings","Dry fried, barbeque or honey glazed","KSh 650"],
+      ["Fish Fingers","","KSh 650"]
+    ],
+    "Hot Drinks": [
+      ["Tea","White 200 · Black 150","KSh 200"],
+      ["Coffee","Black 150 · White 250","KSh 200"],
+      ["Hot Chocolate","White 250 · Black 150","KSh 250"],
+      ["Dawa","","KSh 250"],
+      ["Glass of Milk","","KSh 200"],
+      ["Bone Soup","","KSh 100"],
+      ["Honey","","KSh 50"]
+    ],
+    "Main Meals": [
+      ["Broiler Chicken","Full 1,400 · Half 750","KSh 1,400"],
+      ["Kuku Kienyeji","Full 2,000 · Half 1,100","KSh 2,000"],
+      ["Kuku Bahati","Full 2,900 · Half 1,500","KSh 2,900"],
+      ["Pork Meat","1 kg 1,500 · Half kg 800","KSh 1,500"],
+      ["Pork Spare Ribs","1 kg 1,700 · Half kg 900","KSh 1,700"],
+      ["Whole Tilapia","Grilled or poached","KSh 1,000"],
+      ["Fish Fillet","Grilled or poached","KSh 850"],
+      ["Beef Maji Maji","1 kg 1,600 · Half kg 800","KSh 1,600"],
+      ["Beef Meat","1 kg 1,500 · Half kg 700","KSh 1,500"],
+      ["Mbuzi (Goat)","1 kg 1,500 · Half kg 800","KSh 1,500"]
+    ],
+    "Sides": [
+      ["Chips","","KSh 250"],
+      ["Sauté Potatoes","","KSh 350"],
+      ["Potato Wedges","","KSh 350"],
+      ["Mashed Potatoes","","KSh 350"],
+      ["Boiled Potatoes","","KSh 250"],
+      ["Ugali","","KSh 100"],
+      ["Brown Ugali","","KSh 200"],
+      ["Rice","","KSh 200"],
+      ["Chapati","","KSh 100"],
+      ["Brown Chapati","","KSh 100"],
+      ["Spinach","","KSh 150"],
+      ["Managu / Kienyeji Vegetables","","KSh 200"],
+      ["Steamed Cabbage","","KSh 150"]
+    ],
+    "Platters": [
+      ["Tulips Quad Platter","Beef, mbuzi, full broiler chicken, 2 choma sausages & greens, with any 3 sides (chips, sauté, ugali, rice, wedges). Free 1 litre Minute Maid","KSh 3,900"],
+      ["Family Platter (serves 6)","Beef, pork, mutton & fish fillet portions, full chicken, 4 choma sausages & 2 greens, with any 4 sides (chips, sauté, ugali, rice, wedges). Free 1 litre Minute Maid","KSh 6,500"]
+    ],
+    "Kids": [
+      ["Kiddy's Chips & Sausages","","KSh 350"],
+      ["Kiddy's Fish Fingers & Chips","","KSh 550"],
+      ["Kiddy's Burger with Chips","","KSh 550"],
+      ["Kiddy's Chicken Nuggets with Chips","","KSh 550"],
+      ["Spaghetti with Meatballs","","KSh 500"]
+    ]
   },
   offers: [
     ["leaf","Garden Dining","Open-air tables among the greenery for lunch, dinner and long chats.","I'd like to book a table."],
