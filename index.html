@@ -279,6 +279,13 @@ footer .logo{color:var(--leaf);margin-bottom:.8rem}
 .split:not(:has(.media)),.split.rev:not(:has(.media)){grid-template-columns:1fr;max-width:760px;direction:ltr}
 .events-grid:not(:has(.media)){grid-template-columns:1fr}
 #events .wrap:not(:has(.media)){max-width:760px}
+.foot-h2{margin-top:1.4rem}
+.foot-contact .fc-lbl{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.foot-contact a[href^="tel"]{font-weight:700;color:var(--tulip-2);font-size:1.05rem}
+.foot-contact .socials{display:flex;flex-direction:column;gap:.55rem;margin-top:.4rem}
+.foot-contact .socials a{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none}
+.foot-contact .socials a[hidden]{display:none}
+.foot-contact .socials svg{width:18px;height:18px;flex:none;color:var(--tulip)}
 /* Map link */
 a.map{display:block;text-decoration:none;color:inherit}
 .map-cta{position:absolute;right:12px;bottom:12px;background:linear-gradient(135deg,#f0d77b,#d4af37);color:#0b0b0b;font-weight:700;font-size:.82rem;padding:.45rem .9rem;border-radius:999px}
@@ -812,7 +819,15 @@ a.map{display:block;text-decoration:none;color:inherit}
     </div>
     <div>
       <h4>Visit</h4>
-      <ul><li>Opposite Shell Petrol Station</li><li>Gikambura, Kikuyu</li><li><a href="tel:+254717333300">0717 333 300</a></li><li data-cfg="email"></li><li data-cfg="hours"></li></ul>
+      <ul><li>Opposite Shell Petrol Station</li><li>Gikambura, Kikuyu</li></ul>
+      <h4 class="foot-h2">Contact us</h4>
+      <ul class="foot-contact">
+        <li><span class="fc-lbl">Call / WhatsApp</span><a href="tel:+254717333300">0717 333 300</a></li>
+        <li class="socials">
+          <a href="https://www.tiktok.com/@tulipsgarden6" target="_blank" rel="noopener" aria-label="Tulips Garden on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.4a2.9 2.9 0 1 1-2-2.7V9.2a6.3 6.3 0 1 0 5.4 6.2V8.6a8.2 8.2 0 0 0 4.8 1.5V6.7z"/></svg>@tulipsgarden6</a>
+          <a id="igLink" href="#" target="_blank" rel="noopener" aria-label="Tulips Garden on Instagram" hidden><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span></span></a>
+        </li>
+      </ul>
     </div>
     <div>
       <h4>Stay in the loop</h4>
@@ -825,7 +840,7 @@ a.map{display:block;text-decoration:none;color:inherit}
       <span class="err" id="newsMsg" style="color:#f4b942"></span>
     </div>
   </div>
-  <div class="wrap copy"><span>© <span id="yr"></span> Tulips Garden, Gikambura, Kikuyu</span><a href="https://www.tiktok.com/@tulipsgarden6" target="_blank" rel="noopener">TikTok @tulipsgarden6</a></div>
+  <div class="wrap copy"><span>© <span id="yr"></span> Tulips Garden, Gikambura, Kikuyu</span></div>
 </footer>
 
 <a class="fab" data-wa="Hi Tulips Garden" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -856,9 +871,8 @@ a.map{display:block;text-decoration:none;color:inherit}
 const CONFIG = {
   phone: "0717 333 300",
   whatsapp: "254717333300",
-  email: "[EMAIL]",
-  hours: "[OPENING HOURS]",
   tiktok: "tulipsgarden6",
+  instagram: "",   // e.g. "tulipsgarden" (no @). Leave empty to hide the Instagram link.
   /* true = load the real TikTok player inside each card when clicked (use on your live domain).
      false = cards open the video on TikTok (used in this preview, where embeds are blocked). */
   embedMode: false,
@@ -938,6 +952,7 @@ $$("[data-video-link]").forEach(a=>a.href=ttUrl(CONFIG.videos[a.dataset.videoLin
 $$("[data-cfg]").forEach(el=>el.textContent=CONFIG[el.dataset.cfg]);
 $$("[data-wa]").forEach(a=>a.href=wa(a.dataset.wa));
 $("#yr").textContent=new Date().getFullYear();
+if(CONFIG.instagram){const ig=$("#igLink");ig.href=`https://www.instagram.com/${CONFIG.instagram}/`;$("span",ig).textContent="@"+CONFIG.instagram;ig.hidden=false;}
 
 /* Offers */
 $("#offers").innerHTML=CONFIG.offers.map(([ic,t,d,m,imgs])=>`<article class="offer reveal${imgs?" has-img":""}">${imgs&&imgs.video?`<div class="offer-media"><video src="assets/video/${imgs.video}.mp4" poster="assets/video/${imgs.video}-poster.jpg" muted autoplay loop playsinline preload="none" disablepictureinpicture aria-label="${imgs.alt}"></video></div>`:imgs?`<div class="offer-media${imgs.length>1?" slides":""}">${imgs.map(([f,alt],i)=>`<img class="${i?"":"on"}" src="assets/img/${f}-640.jpg" srcset="assets/img/${f}-640.jpg 640w, assets/img/${f}-1200.jpg 1200w" sizes="(max-width:760px) 100vw, 600px" width="640" height="426" loading="lazy" decoding="async" alt="${alt}">`).join("")}${imgs.length>1?`<span class="dots" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</span>`:""}</div>`:""}<h3>${t}</h3><p>${d}</p><a class="btn btn-wa btn-sm" style="align-self:flex-start" target="_blank" rel="noopener" href="${wa("Hi Tulips Garden, "+m)}">Get in touch</a></article>`).join("");
