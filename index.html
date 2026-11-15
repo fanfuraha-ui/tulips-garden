@@ -105,7 +105,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .offer p{color:var(--muted);font-size:.95rem;flex:1}
 .offer.has-img{overflow:hidden;grid-column:span 2;grid-row:span 2}
 .offer-media{position:relative;width:calc(100% + 3.4rem);flex:1 1 240px;min-height:240px;margin:-1.7rem -1.7rem .3rem;background:#000;overflow:hidden}
-.offer-media img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.offer-media img,.offer-media video{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover}
 .offer-media.slides img{opacity:0;transition:opacity .9s ease}
 .offer-media.slides img.on{opacity:1}
 .offer-media.slides{cursor:pointer}
@@ -114,8 +114,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .offer-media .dots i.on{background:#d4af37;width:20px;border-radius:4px}
 .offer.has-img p{flex:0 0 auto}
 .offers{grid-auto-flow:dense}
-@media(min-width:761px){.offers:has(.has-img){grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.offer.has-img{grid-column:1/-1;grid-row:auto}}
+@media(min-width:761px){.offers:has(.has-img){grid-template-columns:repeat(3,1fr)}.offers .offer.has-img{grid-row:span 1}.offers .offer.has-img:nth-child(3){grid-column:2/4}}
+@media(max-width:600px){.offer.has-img{grid-column:1/-1;grid-row:auto}.offers .offer:last-child:not(.has-img){grid-column:1/-1}}
 @media(max-width:760px){.offer-media{width:calc(100% + 2rem);margin:-1rem -1rem .2rem;flex:0 0 auto;min-height:0;aspect-ratio:16/10}}
 
 /* About */
@@ -935,7 +935,7 @@ const CONFIG = {
   offers: [
     ["leaf","Garden Dining","Open-air tables among the greenery for lunch, dinner and long chats.","I'd like to book a table.",[["garden-dining","Guests dining at picnic tables and gazebos on the lawn at Tulips Garden"]]],
     ["flame","Nyama Choma & Grills","Choma, pan fry, Maji Maji pan fry and chicken wet fry made fresh.","I'd like to ask about your menu."],
-    ["pool","Swimming Pool","A clean pool to cool off in, for kids and adults alike.","I'd like to ask about swimming."],
+    ["pool","Swimming Pool","A clean pool to cool off in, for kids and adults alike.","I'd like to ask about swimming.",{video:"pool",alt:"Guests swimming in the clean blue pool at Tulips Garden"}],
     ["cap","Swimming Classes","Learn to swim with patient instructors, beginners welcome.","I'd like to book swimming classes."],
     ["play","Kids' Play Area","Safe space for little ones to play while you relax nearby.","I'd like to ask about the kids' area.",[["kids-play-1","A clown entertainer on the trampoline in the kids' play area"],["kids-play-2","Colourful climbing frame with slides and swings on the lawn"],["kids-play-3","Bouncing castle with an inflatable slide and a clown holding balloons"]]],
     ["party","Events & Celebrations","Baby showers, birthdays and family gatherings, fully hosted.","I'd like to plan an event."]
@@ -983,7 +983,12 @@ $$("[data-wa]").forEach(a=>a.href=wa(a.dataset.wa));
 $("#yr").textContent=new Date().getFullYear();
 
 /* Offers */
-$("#offers").innerHTML=CONFIG.offers.map(([ic,t,d,m,imgs])=>`<article class="offer reveal${imgs?" has-img":""}">${imgs?`<div class="offer-media${imgs.length>1?" slides":""}">${imgs.map(([f,alt],i)=>`<img class="${i?"":"on"}" src="assets/img/${f}-640.jpg" srcset="assets/img/${f}-640.jpg 640w, assets/img/${f}-1200.jpg 1200w" sizes="(max-width:760px) 100vw, 600px" width="640" height="426" loading="lazy" decoding="async" alt="${alt}">`).join("")}${imgs.length>1?`<span class="dots" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</span>`:""}</div>`:""}<span class="ic" aria-hidden="true"><svg class="i"><use href="#i-${ic}"/></svg></span><h3>${t}</h3><p>${d}</p><a class="btn btn-wa btn-sm" style="align-self:flex-start" target="_blank" rel="noopener" href="${wa("Hi Tulips Garden, "+m)}">Get in touch</a></article>`).join("");
+$("#offers").innerHTML=CONFIG.offers.map(([ic,t,d,m,imgs])=>`<article class="offer reveal${imgs?" has-img":""}">${imgs&&imgs.video?`<div class="offer-media"><video src="assets/video/${imgs.video}.mp4" poster="assets/video/${imgs.video}-poster.jpg" muted autoplay loop playsinline preload="none" disablepictureinpicture aria-label="${imgs.alt}"></video></div>`:imgs?`<div class="offer-media${imgs.length>1?" slides":""}">${imgs.map(([f,alt],i)=>`<img class="${i?"":"on"}" src="assets/img/${f}-640.jpg" srcset="assets/img/${f}-640.jpg 640w, assets/img/${f}-1200.jpg 1200w" sizes="(max-width:760px) 100vw, 600px" width="640" height="426" loading="lazy" decoding="async" alt="${alt}">`).join("")}${imgs.length>1?`<span class="dots" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</span>`:""}</div>`:""}<span class="ic" aria-hidden="true"><svg class="i"><use href="#i-${ic}"/></svg></span><h3>${t}</h3><p>${d}</p><a class="btn btn-wa btn-sm" style="align-self:flex-start" target="_blank" rel="noopener" href="${wa("Hi Tulips Garden, "+m)}">Get in touch</a></article>`).join("");
+/* Offer videos: always muted, only play while visible */
+$$(".offer-media video").forEach(v=>{v.muted=true;v.volume=0;
+  if("IntersectionObserver"in window)new IntersectionObserver(([e])=>{if(e.isIntersecting){v.preload="auto";v.play().catch(()=>{})}else v.pause()},{threshold:.25}).observe(v);else v.play().catch(()=>{});});
+if(matchMedia("(prefers-reduced-motion:reduce)").matches)$$(".offer-media video").forEach(v=>{v.autoplay=false;v.pause()});
+
 /* Offer photo slideshows: crossfade every 4s, only while visible */
 (()=>{const red=matchMedia("(prefers-reduced-motion:reduce)").matches;
 $$(".offer-media.slides").forEach(box=>{const im=[...box.querySelectorAll("img")],d=[...box.querySelectorAll(".dots i")];let n=0,t=null;
