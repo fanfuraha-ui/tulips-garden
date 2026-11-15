@@ -116,6 +116,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .offers{grid-auto-flow:dense}
 @media(min-width:761px){.offers:has(.has-img){grid-template-columns:repeat(2,1fr)}.offers .offer.has-img{grid-column:auto;grid-row:auto}.offers .offer:not(.has-img){flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:1rem}.offers .offer:not(.has-img) p{flex:1 1 100%}}
 .offers .offer:last-child:nth-child(odd){grid-column:1/-1}
+@media(min-width:761px){.offers .offer:last-child:nth-child(odd) .offer-media{height:400px}}
 @media(min-width:761px){.offer-media{flex:0 0 auto;height:260px;min-height:0}}
 @media(max-width:600px){.offer.has-img{grid-column:1/-1;grid-row:auto}}
 @media(max-width:760px){.offer-media{width:calc(100% + 2rem);margin:-1rem -1rem .2rem;flex:0 0 auto;min-height:0;aspect-ratio:16/10}}
@@ -939,7 +940,7 @@ const CONFIG = {
     ["flame","Nyama Choma & Grills","Choma, pan fry, Maji Maji pan fry and chicken wet fry made fresh.","I'd like to ask about your menu.",{video:"choma",alt:"Ribs grilling over charcoal, then chopped and served with onions and coriander on a white plate"}],
     ["pool","Swimming Pool &amp; Classes","A clean pool to cool off in, for kids and adults alike. Learn to swim with patient instructors, beginners welcome.","I'd like to ask about the swimming pool and swimming classes.",{video:"pool",alt:"Guests swimming in the clean blue pool at Tulips Garden"}],
     ["play","Kids' Play Area","Safe space for little ones to play while you relax nearby.","I'd like to ask about the kids' area.",[["kids-play-1","A clown entertainer on the trampoline in the kids' play area"],["kids-play-2","Colourful climbing frame with slides and swings on the lawn"],["kids-play-3","Bouncing castle with an inflatable slide and a clown holding balloons"]]],
-    ["party","Events & Celebrations","Baby showers, birthdays and family gatherings, fully hosted.","I'd like to plan an event."]
+    ["party","Events & Celebrations","Baby showers, birthdays and family gatherings, fully hosted.","I'd like to plan an event.",{video:"events",alt:"A birthday party set up at Tulips Garden: decorated tables, balloons and a hot buffet"}]
   ]
 };
 /* ======================================================= */
