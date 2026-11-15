@@ -52,6 +52,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .nav{position:relative;display:flex;align-items:center;justify-content:space-between;height:72px}
 .logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--leaf)}
 .logo svg{width:34px;height:34px}
+.logo img{height:52px;width:auto;display:block}
+@media(max-width:520px){.logo img{height:42px}}
 .nav ul{display:flex;gap:1.6rem;list-style:none}
 .nav ul a{text-decoration:none;font-weight:500;color:var(--ink);font-size:.95rem}
 .nav ul a:hover{color:var(--tulip)}
@@ -529,7 +531,7 @@ a.map{display:block;text-decoration:none;color:inherit}
 <div class="topbar"><div class="wrap"><span>Karibuni! You're always welcome at Tulips Garden</span><span class="tb-r"><svg class="i"><use href="#i-pin"/></svg>Opp. Shell, Gikambura · <svg class="i"><use href="#i-phone"/></svg><a href="tel:+254717333300">0717 333 300</a></span></div></div>
 <header>
   <nav class="wrap nav" aria-label="Main">
-    <a href="#home" class="logo"><svg><use href="#tulip"/></svg>Tulips Garden</a>
+    <a href="#home" class="logo" aria-label="Tulips Garden home"><img src="assets/tulips-logo.png" alt="Tulips Garden" width="480" height="179"></a>
     <ul id="menu">
       <li><a href="#about">About</a></li>
       <li><a href="#menu-sec">Menu</a></li>
@@ -801,7 +803,7 @@ a.map{display:block;text-decoration:none;color:inherit}
 <footer id="contact">
   <div class="wrap fgrid-foot">
     <div>
-      <a href="#home" class="logo"><svg><use href="#tulip"/></svg>Tulips Garden</a>
+      <a href="#home" class="logo" aria-label="Tulips Garden home"><img src="assets/tulips-logo.png" alt="Tulips Garden" width="480" height="179"></a>
       <p style="font-size:.93rem">Scenic views &amp; unforgettable moments. Food, swimming, kids' area and events in Gikambura, Kikuyu.</p>
     </div>
     <div>
