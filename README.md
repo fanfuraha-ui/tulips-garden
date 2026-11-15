@@ -10,7 +10,7 @@ One self-contained `index.html` (HTML, CSS, vanilla JS). No build step.
 
 ## Editing
 All business details live in the `CONFIG` object at the top of the main `<script>`:
-- `phone`, `whatsapp`, `email`, `hours`, `swimSchedule`, `swimFees`
+- `phone`, `whatsapp`, `email`, `hours`
 - `videos` — TikTok video IDs per section
 - `embedMode` — set to `true` on the live domain so each video card plays the TikTok video in place
 
