@@ -240,6 +240,18 @@ footer .logo{color:var(--leaf);margin-bottom:.8rem}
 .hero .lead{margin-top:.6rem}
 @media(max-width:860px){.welcome{text-align:center}.ornament{margin-inline:auto}.hero-actions,.chips{justify-content:center}.welcome .lead{margin-inline:auto}}
 
+
+/* Hero video background */
+.hero--video{position:relative;isolation:isolate;overflow:hidden;min-height:min(88vh,760px);display:flex;align-items:center;background:#0b0b0b}
+.hero--video .hero-grid{grid-template-columns:minmax(0,680px);position:relative;z-index:2}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,11,11,.92) 0%,rgba(11,11,11,.72) 45%,rgba(11,11,11,.35) 100%),linear-gradient(0deg,#0b0b0b 0%,transparent 30%)}
+.hero--video .chip{background:rgba(20,20,20,.7);backdrop-filter:blur(4px)}
+.hero-sound{position:absolute;left:calc((100% - min(1180px,92%))/2);bottom:clamp(1rem,3vw,2rem);z-index:3;display:inline-flex;align-items:center;gap:.4rem;font:600 .85rem var(--sans);color:#0b0b0b;background:linear-gradient(135deg,#f0d77b,#d4af37);border:0;border-radius:999px;padding:.55rem 1rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+@media(max-width:860px){.hero-shade{background:linear-gradient(180deg,rgba(11,11,11,.55) 0%,rgba(11,11,11,.82) 55%,#0b0b0b 100%)}.hero--video{min-height:auto}.hero--video .hero-grid{grid-template-columns:1fr}}
+@media(max-width:860px){.hero.hero--video{padding-bottom:4.5rem}.hero-sound{left:50%;transform:translateX(-50%);bottom:1.1rem}}
+@media(prefers-reduced-motion:reduce){.hero-bg{display:none}.hero--video{background:#0b0b0b url(assets/video/tulips-hero-poster.jpg) center/cover}}
+
 /* Map link */
 a.map{display:block;text-decoration:none;color:inherit}
 .map-cta{position:absolute;right:12px;bottom:12px;background:linear-gradient(135deg,#f0d77b,#d4af37);color:#0b0b0b;font-weight:700;font-size:.82rem;padding:.45rem .9rem;border-radius:999px}
@@ -551,7 +563,12 @@ a.map{display:block;text-decoration:none;color:inherit}
 <main id="home">
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero hero--video">
+  <video class="hero-bg" autoplay muted loop playsinline preload="metadata" poster="assets/video/tulips-hero-poster.jpg" aria-hidden="true">
+    <source src="assets/video/tulips-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <button class="hero-sound" type="button" aria-pressed="false" aria-label="Turn sound on"><span class="ico" aria-hidden="true">🔇</span><span class="txt">Sound on</span></button>
   <div class="wrap hero-grid">
     <div class="reveal welcome">
       <span class="karibu">Karibuni · Welcome to</span>
@@ -568,7 +585,6 @@ a.map{display:block;text-decoration:none;color:inherit}
         <span class="chip">Kids' Area</span><span class="chip">Baby Showers</span><span class="chip">Games</span>
       </div>
     </div>
-    <div class="hero-video reveal" data-video="hero"></div>
   </div>
 </section>
 
@@ -1177,6 +1193,13 @@ Lux.listPicker({btn:$("#ebudgetBtn"),input:$("#ebudget"),eyebrow:"Budget range",
   {ic:"leaf",v:"Under KSh 20,000",d:"Intimate gathering"},
   {ic:"heart",v:"KSh 20,000 – 50,000",d:"Classic celebration"},
   {ic:"crown",v:"Above KSh 50,000",d:"Grand occasion"}]});
+
+/* Hero video: sound toggle, pause when off-screen */
+(()=>{const v=document.querySelector(".hero-bg"),b=document.querySelector(".hero-sound");if(!v||!b)return;
+b.addEventListener("click",()=>{v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play();}
+b.setAttribute("aria-pressed",String(!v.muted));b.setAttribute("aria-label",v.muted?"Turn sound on":"Turn sound off");
+b.querySelector(".ico").textContent=v.muted?"🔇":"🔊";b.querySelector(".txt").textContent=v.muted?"Sound on":"Sound off";});
+if("IntersectionObserver"in window)new IntersectionObserver(([e])=>{e.isIntersecting?v.play().catch(()=>{}):v.pause();}).observe(v);})();
 </script>
 </body>
 </html>
