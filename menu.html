@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu · Tulips Garden, Gikambura Kikuyu</title>
+<meta name="description" content="The Tulips Garden menu: platters, nyama choma and grills, breakfast, snacks, drinks, sides and kids' meals. Opposite Shell, Gikambura, Kikuyu.">
+<meta name="theme-color" content="#121010">
+<meta property="og:title" content="Tulips Garden Menu">
+<meta property="og:description" content="Platters, grills, breakfast, snacks, drinks and more. Call 0717 333 300.">
+<meta property="og:image" content="assets/menu/menu-qr.png">
+<link rel="icon" href="assets/tulips-logo.png">
+<link rel="stylesheet" href="assets/menu/menu.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#0b0b0b;color:#efe6d2;font-family:"TG Poppins",system-ui,sans-serif}
+  .bar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;padding:.7rem 4%;background:rgba(11,11,11,.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(212,175,55,.3)}
+  .bar a.home{display:flex;align-items:center;gap:.5rem;color:#f0d77b;text-decoration:none;font-weight:500;font-size:.95rem}
+  .bar a.home img{height:34px;width:auto}
+  .acts{display:flex;gap:.5rem;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:.4rem;font:600 .9rem "TG Poppins",system-ui,sans-serif;border-radius:999px;padding:.6rem 1.1rem;cursor:pointer;text-decoration:none;border:1px solid #d4af37}
+  .btn.gold{background:linear-gradient(135deg,#f0d77b,#d4af37);color:#0b0b0b;border:0}
+  .btn.ghost{background:transparent;color:#f0d77b}
+  main{width:min(1180px,94%);margin:1.5rem auto 3rem}
+  @media(max-width:560px){.bar{justify-content:center}.bar a.home span{display:none}.btn{padding:.55rem .9rem;font-size:.85rem}}
+  @media print{body{background:#121010}.bar{display:none}main{width:auto;margin:0}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="home" href="./"><img src="assets/tulips-logo.png" alt="Tulips Garden"><span>← Back to website</span></a>
+  <div class="acts">
+    <a class="btn gold" href="assets/menu/tulips-garden-menu.pdf" download>⬇ Download PDF</a>
+    <button class="btn ghost" type="button" onclick="window.print()">🖨 Print</button>
+    <a class="btn ghost" href="https://wa.me/254717333300?text=Hi%20Tulips%20Garden%2C%20I%27d%20like%20to%20place%20a%20food%20order." target="_blank" rel="noopener">Order on WhatsApp</a>
+  </div>
+</header>
+<main><div data-tulips-menu></div></main>
+<script src="assets/menu/menu-data.js"></script>
+<script src="assets/menu/menu.js"></script>
+<script>
+  /* menu.html#print opens the print dialog once fonts and images are ready */
+  if (location.hash === "#print") {
+    const imgs = [...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }));
+    Promise.all([document.fonts ? document.fonts.ready : 0, ...imgs]).then(() => setTimeout(() => window.print(), 300));
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* Tulips Garden menu boards: shared by index.html, menu.html and the PDF */
+@font-face{font-family:"TG Lora";src:url(../fonts/Lora-Variable.woff) format("woff");font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"TG Lora";src:url(../fonts/Lora-Italic-Variable.woff) format("woff");font-weight:400 700;font-style:italic;font-display:swap}
+@font-face{font-family:"TG Poppins";src:url(../fonts/Poppins-Regular.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"TG Poppins";src:url(../fonts/Poppins-Medium.woff) format("woff");font-weight:500;font-display:swap}
+@font-face{font-family:"TG Poppins";src:url(../fonts/Poppins-Bold.woff) format("woff");font-weight:700;font-display:swap}
+
+.tm{--gold:#f0d77b;--gold-2:#d4af37;--gold-3:#a8841f;--red:#7a1418;--red-2:#4a0b0e;--txt:#efe6d2;--mut:#b9ad94;
+  container-type:inline-size;display:grid;gap:1.4rem;font-family:"TG Poppins",system-ui,sans-serif;color:var(--txt);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.tm *{box-sizing:border-box;margin:0;padding:0}
+.tm-board{position:relative;isolation:isolate;overflow:hidden;border-radius:14px;font-size:clamp(11px,1.3cqi,16px);line-height:1.35;
+  aspect-ratio:297/210;padding:2.2em 2.4em;display:grid;gap:2.2em;
+  background:
+    radial-gradient(60% 50% at 15% 10%,rgba(255,255,255,.05),transparent 70%),
+    radial-gradient(50% 60% at 90% 100%,rgba(255,255,255,.04),transparent 70%),
+    #121010;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.25)}
+/* grain texture */
+.tm-board::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.tm-swoosh{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.tm-board.b1{grid-template-columns:1.12fr 1fr .95fr}
+.tm-board.b2{grid-template-columns:1fr 1.05fr 1.1fr 1fr;grid-template-rows:1fr auto}
+.tm-col{display:flex;flex-direction:column;gap:1.5em;min-width:0}
+
+/* Headings: small white word over a big gold display word */
+.tm-h{font-family:"TG Lora",Georgia,serif;line-height:.92;color:#fff}
+.tm-h small{display:block;font-family:"TG Poppins",sans-serif;font-weight:700;font-size:1.25em;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.tm-h b{display:block;font-weight:700;font-size:2.9em;letter-spacing:-.01em;background:linear-gradient(180deg,#fff3c4,#f0d77b 40%,#d4af37 75%,#a8841f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tm-h.huge b{font-size:4.6em;text-transform:uppercase;letter-spacing:-.02em;line-height:.86}
+.tm-h.huge.white b{background:none;color:#fff;-webkit-text-fill-color:#fff}
+.tm-h.it b{font-style:italic}
+.tm-h + *{margin-top:.6em}
+.tm-h + .tm-sub{margin-top:.8em}
+.tm-greens{margin-top:4.1em!important}
+.tm-sub{font-family:"TG Lora",serif;font-style:italic;font-weight:700;color:var(--gold-2);text-transform:uppercase;letter-spacing:.04em;font-size:1em;margin:.2em 0 .35em}
+
+/* Price lists */
+.tm-list{list-style:none;display:grid;gap:.28em}
+.tm-list li{display:grid;grid-template-columns:1fr auto;column-gap:.8em;align-items:baseline}
+.tm-list .n{font-weight:500;color:var(--txt)}
+.tm-list .p{font-weight:700;color:#fff;font-variant-numeric:tabular-nums;text-align:right}
+.tm-list .d{grid-column:1/-1;font-size:.82em;color:var(--mut);margin-top:-.15em}
+.tm-list.lead .n{color:#fff}
+.tm-cur{font-size:.78em;color:var(--mut);letter-spacing:.08em;text-transform:uppercase}
+
+/* Mains table */
+.tm-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tm-table th{font-size:.74em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-2);text-align:right;padding:0 0 .35em .6em;white-space:nowrap}
+.tm-table th:first-child{text-align:left;padding-left:0}
+.tm-table td{padding:.28em 0;border-bottom:1px dashed rgba(212,175,55,.18);vertical-align:baseline}
+.tm-table td.p{text-align:right;font-weight:700;color:#fff;padding-left:.6em;white-space:nowrap}
+.tm-table td.p.e{color:var(--mut);font-weight:400}
+.tm-table .n{font-weight:500}
+.tm-table .d{display:block;font-size:.78em;color:var(--mut)}
+
+/* Platters */
+.tm-platter{position:relative;padding:1em 1.1em 1em;border-radius:12px;background:linear-gradient(135deg,rgba(122,20,24,.55),rgba(30,8,9,.6));border:1px solid rgba(240,215,123,.35)}
+.tm-platter + .tm-platter{margin-top:.9em}
+.tm-platter h4{font-family:"TG Lora",serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:1.22em;color:var(--gold);letter-spacing:.02em;padding-right:5.5em}
+.tm-platter h4 span{display:block;font-family:"TG Poppins",sans-serif;font-style:normal;font-size:.62em;letter-spacing:.14em;color:#fff;opacity:.85}
+.tm-platter .price{position:absolute;top:.9em;right:1em;font-weight:700;font-size:1.15em;color:#120d05;background:linear-gradient(135deg,#fff3c4,#f0d77b,#d4af37);padding:.2em .65em;border-radius:999px;white-space:nowrap}
+.tm-platter .price small{font-size:.7em;font-weight:500}
+.tm-platter p{font-size:.88em;color:var(--txt);margin-top:.45em}
+.tm-platter .tag{display:inline-block;margin-top:.55em;font-size:.76em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);border:1px dashed rgba(240,215,123,.55);padding:.15em .6em;border-radius:6px}
+.tm-note{font-style:italic;font-size:.85em;color:#ff8f7a}
+
+/* Brand block */
+.tm-brand{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.5em}
+.tm-brand img{width:78%;max-width:none;height:auto;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.tm-brand .menu-word{font-family:"TG Lora",serif;font-weight:700;font-size:4.2em;line-height:.9;letter-spacing:.04em;background:linear-gradient(180deg,#fff3c4,#f0d77b 45%,#d4af37 75%,#a8841f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tm-brand .rule{width:60%;height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent)}
+.tm-band{margin-top:auto;align-self:center;background:linear-gradient(90deg,#4a0b0e,#7a1418,#4a0b0e);border:1px solid rgba(240,215,123,.4);color:#fff;font-weight:700;letter-spacing:.24em;font-size:.86em;padding:.45em 1.4em;border-radius:6px;text-transform:uppercase;white-space:nowrap}
+
+/* Contact panel */
+.tm-contact{margin-top:auto;background:rgba(0,0,0,.55);border:1px solid rgba(212,175,55,.3);border-radius:12px;padding:1em;display:grid;gap:.55em;text-align:center}
+.tm-contact .call{display:flex;align-items:center;justify-content:center;gap:.7em;background:linear-gradient(90deg,#4a0b0e,#7a1418);border-radius:8px;padding:.5em .8em}
+.tm-contact .call small{font-size:.66em;line-height:1.2;text-transform:uppercase;letter-spacing:.06em;text-align:left;color:#f3d7d0}
+.tm-contact .call b{font-size:1.6em;color:#fff;letter-spacing:.02em;white-space:nowrap}
+.tm-contact .ln{font-size:.85em;color:var(--txt);display:flex;align-items:center;justify-content:center;gap:.4em}
+.tm-contact svg{width:1.05em;height:1.05em;flex:none;fill:none;stroke:var(--gold-2);stroke-width:2}
+
+/* Decorations and QR */
+.tm-icon{width:5.2em;height:auto;display:block;margin:.3em 0 0 auto}
+.tm-qr{margin-top:auto;display:flex;align-items:center;gap:.9em;background:#fffaf0;color:#111;border-radius:12px;padding:.7em .9em;border:3px solid var(--gold-2)}
+.tm-qr img{width:6.6em;height:6.6em;display:block;image-rendering:pixelated;flex:none}
+.tm-qr b{display:block;font-family:"TG Lora",serif;font-size:1.15em;line-height:1.1;color:#4a0b0e}
+.tm-qr span{font-size:.78em;color:#333}
+.tm-strip{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:1.6em;padding:1.1em 1.4em;border-radius:14px;background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(74,11,14,.85) 50%,rgba(0,0,0,.7));border:1px solid rgba(240,215,123,.4)}
+.tm-strip > img{width:10em;height:auto;max-width:none}
+.tm-strip .txt b{display:block;font-family:"TG Lora",serif;font-style:italic;font-size:1.9em;line-height:1.05;color:#ecc95a}
+.tm-strip .txt span{font-size:.9em;color:var(--txt)}
+.tm-strip .call{text-align:center;padding:.4em 1em;border-left:1px solid rgba(240,215,123,.35);border-right:1px solid rgba(240,215,123,.35)}
+.tm-strip .call small{display:block;font-size:.72em;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.tm-strip .call b{font-size:1.55em;white-space:nowrap;color:#fff}
+.tm-strip .tm-qr{margin-top:0}
+.tm-foot{font-size:.74em;color:var(--mut);font-style:italic}
+
+/* Phones and small tablets: stack the columns */
+@container (max-width:760px){
+  .tm-board{aspect-ratio:auto;font-size:14px;padding:1.6em 1.3em;gap:2em;border-radius:12px}
+  .tm-board.b1,.tm-board.b2{grid-template-columns:1fr}
+  .tm-board.b1 .c-brand{order:-1}
+  .tm-h.huge b{font-size:3.6em}
+  .tm-brand img{width:70%}
+  .tm-brand .menu-word{font-size:3.2em}
+  .tm-swoosh{height:auto;top:auto}
+  .tm-icon{display:none}
+  .tm-greens{margin-top:0!important}
+  .tm-board.b2{grid-template-rows:none}
+  .tm-strip{grid-template-columns:1fr;text-align:center;justify-items:center;gap:1em}
+  .tm-strip .call{border:0;border-top:1px solid rgba(240,215,123,.35);border-bottom:1px solid rgba(240,215,123,.35);padding:.6em 2em}
+}
+@container (min-width:761px) and (max-width:1000px){
+  .tm-board{aspect-ratio:auto;font-size:13px}
+  .tm-board.b2{grid-template-columns:1fr 1fr;grid-template-rows:none}
+  .tm-strip{grid-template-columns:1fr auto}
+  .tm-strip > img{display:none}
+}
+
+/* Print: each board fills one A4 landscape page */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  .tm{display:block;container-type:normal}
+  .tm-board{width:297mm;height:210mm;aspect-ratio:auto;border-radius:0;border:0;box-shadow:none;font-size:14.6px;break-after:page;page-break-after:always}
+  .tm-board:last-child{break-after:auto;page-break-after:auto}
+  .tm-h b,.tm-brand .menu-word{background:none!important;color:#ecc95a!important;-webkit-text-fill-color:#ecc95a}
+  .tm-h.huge.white b{color:#fff!important;-webkit-text-fill-color:#fff}
+  .tm-board::before{display:none}
+}

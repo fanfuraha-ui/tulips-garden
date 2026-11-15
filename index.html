@@ -138,20 +138,15 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .why span{color:var(--muted);font-size:.94rem}
 
 /* Menu */
-.menu-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
-.menu-card{background:var(--card);border:1px solid var(--cream-2);border-radius:var(--r);padding:2rem;box-shadow:var(--shadow)}
-.menu-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.4rem}
-.menu-tabs button{border:1px solid var(--cream-2);background:var(--cream);padding:.5rem 1rem;border-radius:999px;font-family:var(--sans);font-weight:600;cursor:pointer;color:var(--leaf)}
-.menu-tabs button[aria-selected="true"]{background:var(--leaf);color:#0b0b0b;border-color:var(--leaf)}
-.menu-list{list-style:none;display:grid;gap:1rem}
-.menu-list li{display:flex;gap:.8rem;align-items:baseline}
-.menu-list .n{font-weight:700}
-.menu-list .d{display:block;font-size:.87rem;color:var(--muted)}
-.menu-list .dots{flex:1;border-bottom:2px dotted var(--cream-2);transform:translateY(-4px)}
-.menu-list .p{font-weight:700;color:var(--tulip);white-space:nowrap}
-.menu-note{font-size:.82rem;color:var(--muted);margin-top:1.3rem;font-style:italic}
-.menu-vids{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
-@media(max-width:960px){.menu-grid{grid-template-columns:1fr}}
+.menu-actions{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between;margin:2rem 0 1.4rem}
+.ma-btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.ma-qr{display:flex;align-items:center;gap:.9rem;background:#fffaf0;color:#222;border:3px solid var(--tulip);border-radius:14px;padding:.6rem .9rem .6rem .6rem;max-width:380px}
+.ma-qr img{width:92px;height:92px;image-rendering:pixelated;flex:none}
+.ma-qr b{display:block;font-family:var(--serif);color:#4a0b0e;font-size:1.05rem}
+.ma-qr span{display:block;font-size:.82rem;color:#444}
+.ma-qr a{font-size:.8rem;font-weight:700;color:#7a1418}
+.menu-boards{margin-bottom:2rem}
+.menu-vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem}
 @media(max-width:520px){.menu-vids{grid-template-columns:repeat(2,1fr)}}
 
 /* Split feature */
@@ -322,9 +317,9 @@ a.map{display:block;text-decoration:none;color:inherit}
   .menu-vids .vcard{flex:0 0 42vw;scroll-snap-align:start}
   .carousel{margin-inline:-5vw;padding-inline:5vw;scrollbar-width:none}
   .carousel .vcard{flex-basis:46vw}
-  .menu-card{padding:1.3rem}
-  .menu-card .btn{width:100%;justify-content:center}
-  .menu-list .p{font-size:.9rem}
+  .ma-btns{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .ma-btns .btn{justify-content:center;padding:.75rem .5rem;font-size:.85rem}
+  .ma-qr{max-width:none;width:100%}
 
   .split{gap:2rem}
   .split .media.one{max-width:230px}
@@ -539,6 +534,7 @@ a.map{display:block;text-decoration:none;color:inherit}
 .mbar a span .i{width:22px;height:22px;stroke-width:1.7}
 @media(max-width:760px){.offer .ic .i{width:21px;height:21px}}
 </style>
+<link rel="stylesheet" href="assets/menu/menu.css">
 </head>
 <body>
 
@@ -662,16 +658,21 @@ a.map{display:block;text-decoration:none;color:inherit}
 <!-- MENU -->
 <section class="tint" id="menu-sec">
   <div class="wrap">
-    <div class="reveal"><span class="eyebrow">Our menu</span><h2>Straight from our kitchen</h2><p class="lead">Kenyan favourites cooked fresh, from sizzling choma to Maji Maji pan fry. Tap a video to see what's cooking.</p></div>
-    <div class="menu-grid">
-      <div class="menu-card reveal">
-        <div class="menu-tabs" role="tablist" id="menuTabs"></div>
-        <ul class="menu-list" id="menuList"></ul>
-        <p class="menu-note">Prices in Kenya Shillings (KSh). Menu and prices may change, ask our team for today's specials.</p>
-        <a class="btn btn-wa" style="margin-top:1.3rem" data-wa="Hi Tulips Garden, I'd like to place a food order." target="_blank" rel="noopener">Order via WhatsApp</a>
+    <div class="reveal"><span class="eyebrow">Our menu</span><h2>Straight from our kitchen</h2><p class="lead">Kenyan favourites cooked fresh, from sizzling choma to Maji Maji pan fry. Download it, print it, or scan the code to keep it on your phone.</p></div>
+    <div class="menu-actions reveal">
+      <div class="ma-btns">
+        <a class="btn btn-tulip" href="assets/menu/tulips-garden-menu.pdf" download>⬇ Download PDF</a>
+        <a class="btn btn-ghost" href="menu.html#print" target="_blank" rel="noopener" style="color:var(--leaf)">🖨 Print menu</a>
+        <a class="btn btn-ghost" href="menu.html" target="_blank" rel="noopener" style="color:var(--leaf)">Open full screen</a>
+        <a class="btn btn-wa" data-wa="Hi Tulips Garden, I'd like to place a food order." target="_blank" rel="noopener">Order via WhatsApp</a>
       </div>
-      <div class="menu-vids reveal" data-group="food"></div>
+      <div class="ma-qr">
+        <img src="assets/menu/menu-qr.png" alt="QR code for the Tulips Garden online menu" width="330" height="330" loading="lazy">
+        <div><b>Scan for our menu</b><span>Point your phone camera here</span><a href="assets/menu/menu-qr.png" download="tulips-garden-menu-qr.png">Download QR (PNG)</a> · <a href="assets/menu/menu-qr.svg" download="tulips-garden-menu-qr.svg">SVG for printing</a></div>
+      </div>
     </div>
+    <div class="menu-boards reveal" data-tulips-menu></div>
+    <div class="menu-vids reveal" data-group="food"></div>
   </div>
 </section>
 
@@ -865,6 +866,8 @@ a.map{display:block;text-decoration:none;color:inherit}
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-1.282409%2C36.6563304&amp;destination_place_id=ChIJ6WnJuNEfLxgRR7vG0N-QVKo" target="_blank" rel="noopener"><span><svg class="i"><use href="#i-pin"/></svg></span>Directions</a>
   <a href="#reserve" class="mbar-book"><span><svg class="i"><use href="#i-dine"/></svg></span>Book</a>
 </nav>
+<script src="assets/menu/menu-data.js"></script>
+<script src="assets/menu/menu.js"></script>
 <script>
 /* ============ CONFIG: edit everything here ============ */
 const CONFIG = {
@@ -905,73 +908,7 @@ const CONFIG = {
     gallery: ["7704213491242159380","7703484815856749830","7699523254209301780","7697130924122623252","7695723668860669204","7689119002366364948","7687949868136074516","7687295776120229141","7682555282551180565","7682299904676384020","7679394714675612949","7671596921592483093"]
       .map((id,i)=>({id, cap:["Garden views","Golden hour","Poolside","Table for the family","Weekend crowd","Celebrations","Lush greens","Good times","Kids at play","Evening lights","Chill zone","Moments"][i], t:"abcdef"[i%6]}))
   },
-  menu: {
-    "Breakfast": [
-      ["Tulips Full Breakfast","2 eggs your way, 2 sausages, crispy bacon & toast, with tea, coffee or hot chocolate","KSh 850"],
-      ["Tulips Mini Breakfast","Toast, 2 eggs & 1 sausage, with tea, coffee or hot chocolate","KSh 450"],
-      ["Spanish Omelette","","KSh 200"],
-      ["Fried / Boiled Eggs","","KSh 150"],
-      ["Bacon","","KSh 350"],
-      ["Plantains","","KSh 400"],
-      ["Pancakes (pair)","","KSh 100"]
-    ],
-    "Snacks": [
-      ["Sausages (2)","","KSh 150"],
-      ["Samosas (2)","","KSh 150"],
-      ["Choma Sausages","","KSh 150"],
-      ["Special Choma Sausages","","KSh 200"],
-      ["Burger","","KSh 650"],
-      ["Chicken Wings","Dry fried, barbeque or honey glazed","KSh 650"],
-      ["Fish Fingers","","KSh 650"]
-    ],
-    "Hot Drinks": [
-      ["Tea","White 200 · Black 150","KSh 200"],
-      ["Coffee","Black 150 · White 250","KSh 200"],
-      ["Hot Chocolate","White 250 · Black 150","KSh 250"],
-      ["Dawa","","KSh 250"],
-      ["Glass of Milk","","KSh 200"],
-      ["Bone Soup","","KSh 100"],
-      ["Honey","","KSh 50"]
-    ],
-    "Main Meals": [
-      ["Broiler Chicken","Full 1,400 · Half 750","KSh 1,400"],
-      ["Kuku Kienyeji","Full 2,000 · Half 1,100","KSh 2,000"],
-      ["Kuku Bahati","Full 2,900 · Half 1,500","KSh 2,900"],
-      ["Pork Meat","1 kg 1,500 · Half kg 800","KSh 1,500"],
-      ["Pork Spare Ribs","1 kg 1,700 · Half kg 900","KSh 1,700"],
-      ["Whole Tilapia","Grilled or poached","KSh 1,000"],
-      ["Fish Fillet","Grilled or poached","KSh 850"],
-      ["Beef Maji Maji","1 kg 1,600 · Half kg 800","KSh 1,600"],
-      ["Beef Meat","1 kg 1,500 · Half kg 700","KSh 1,500"],
-      ["Mbuzi (Goat)","1 kg 1,500 · Half kg 800","KSh 1,500"]
-    ],
-    "Sides": [
-      ["Chips","","KSh 250"],
-      ["Sauté Potatoes","","KSh 350"],
-      ["Potato Wedges","","KSh 350"],
-      ["Mashed Potatoes","","KSh 350"],
-      ["Boiled Potatoes","","KSh 250"],
-      ["Ugali","","KSh 100"],
-      ["Brown Ugali","","KSh 200"],
-      ["Rice","","KSh 200"],
-      ["Chapati","","KSh 100"],
-      ["Brown Chapati","","KSh 100"],
-      ["Spinach","","KSh 150"],
-      ["Managu / Kienyeji Vegetables","","KSh 200"],
-      ["Steamed Cabbage","","KSh 150"]
-    ],
-    "Platters": [
-      ["Tulips Quad Platter","Beef, mbuzi, full broiler chicken, 2 choma sausages & greens, with any 3 sides (chips, sauté, ugali, rice, wedges). Free 1 litre Minute Maid","KSh 3,900"],
-      ["Family Platter (serves 6)","Beef, pork, mutton & fish fillet portions, full chicken, 4 choma sausages & 2 greens, with any 4 sides (chips, sauté, ugali, rice, wedges). Free 1 litre Minute Maid","KSh 6,500"]
-    ],
-    "Kids": [
-      ["Kiddy's Chips & Sausages","","KSh 350"],
-      ["Kiddy's Fish Fingers & Chips","","KSh 550"],
-      ["Kiddy's Burger with Chips","","KSh 550"],
-      ["Kiddy's Chicken Nuggets with Chips","","KSh 550"],
-      ["Spaghetti with Meatballs","","KSh 500"]
-    ]
-  },
+  // Menu items and prices live in assets/menu/menu-data.js (also used by menu.html and the PDF)
   offers: [
     ["leaf","Garden Dining","Open-air tables among the greenery for lunch, dinner and long chats.","I'd like to book a table.",[["garden-dining","Guests dining at picnic tables and gazebos on the lawn at Tulips Garden"]]],
     ["flame","Nyama Choma & Grills","Choma, pan fry, Maji Maji pan fry and chicken wet fry made fresh.","I'd like to ask about your menu."],
@@ -1031,16 +968,6 @@ const go=k=>{im[n].classList.remove("on");d[n].classList.remove("on");n=k;im[n].
 const start=()=>{if(!t&&!red)t=setInterval(()=>go((n+1)%im.length),4000)},stop=()=>{clearInterval(t);t=null};
 box.addEventListener("click",()=>go((n+1)%im.length));
 if("IntersectionObserver"in window)new IntersectionObserver(([e])=>e.isIntersecting?start():stop()).observe(box);else start();});})();
-
-/* Menu tabs */
-const cats=Object.keys(CONFIG.menu);
-function showMenu(c){
-  $$("#menuTabs button").forEach(b=>b.setAttribute("aria-selected",b.textContent===c));
-  $("#menuList").innerHTML=CONFIG.menu[c].map(([n,d,p])=>`<li><span><span class="n">${n}</span><span class="d">${d}</span></span><span class="dots"></span><span class="p">${p}</span></li>`).join("");
-}
-$("#menuTabs").innerHTML=cats.map(c=>`<button role="tab" type="button">${c}</button>`).join("");
-$$("#menuTabs button").forEach(b=>b.onclick=()=>showMenu(b.textContent));
-showMenu(cats[0]);
 
 /* Mobile nav */
 const burger=$(".burger"), menu=$("#menu");
