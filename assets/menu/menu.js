@@ -87,5 +87,6 @@
     </div>
   </article>`;
 
-  document.querySelectorAll("[data-tulips-menu]").forEach(el => { el.classList.add("tm"); el.innerHTML = board1 + board2; });
+  window.renderTulipsMenu = el => { el.classList.add("tm"); el.innerHTML = board1 + board2; };
+  document.querySelectorAll("[data-tulips-menu]").forEach(window.renderTulipsMenu);
 })();

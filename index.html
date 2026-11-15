@@ -148,7 +148,17 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .ma-qr b{display:block;font-family:var(--serif);color:#4a0b0e;font-size:1.05rem}
 .ma-qr span{display:block;font-size:.82rem;color:#444}
 .ma-qr a{font-size:.8rem;font-weight:700;color:#7a1418}
-.menu-boards{margin-bottom:2rem}
+.menu-actions{margin-bottom:2.4rem}
+.mv{position:fixed;inset:0;z-index:200;background:#0b0b0b;overflow-y:auto;overscroll-behavior:contain;display:none}
+.mv.open{display:block}
+.mv-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.7rem 4%;background:rgba(11,11,11,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(212,175,55,.3)}
+.mv-bar img{height:34px;width:auto}
+.mv-bar .acts{display:flex;gap:.5rem;align-items:center}
+.mv-body{width:min(1180px,94%);margin:1.4rem auto 3rem}
+.mv-close{font:700 .9rem var(--sans);cursor:pointer;color:#0b0b0b;background:linear-gradient(135deg,#f0d77b,#d4af37);border:0;border-radius:999px;padding:.6rem 1.1rem}
+.mv-dl{font:600 .9rem var(--sans);text-decoration:none;color:var(--tulip-2);border:1px solid var(--tulip);border-radius:999px;padding:.55rem 1rem}
+body.mv-lock{overflow:hidden}
+@media(max-width:560px){.mv-bar img{display:none}.mv-bar{justify-content:space-between}}
 .menu-vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.9rem}
 @media(max-width:520px){.menu-vids{grid-template-columns:repeat(2,1fr)}}
 
@@ -674,7 +684,6 @@ a.map{display:block;text-decoration:none;color:inherit}
         <div><b>Scan for our menu</b><span>Point your phone camera here</span><a href="assets/menu/menu-qr.png" download="tulips-garden-menu-qr.png">Download QR (PNG)</a> · <a href="assets/menu/menu-qr.svg" download="tulips-garden-menu-qr.svg">SVG for printing</a></div>
       </div>
     </div>
-    <div class="menu-boards reveal" data-tulips-menu></div>
     <div class="menu-vids reveal" data-group="food"></div>
   </div>
 </section>
@@ -869,6 +878,17 @@ a.map{display:block;text-decoration:none;color:inherit}
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-1.282409%2C36.6563304&amp;destination_place_id=ChIJ6WnJuNEfLxgRR7vG0N-QVKo" target="_blank" rel="noopener"><span><svg class="i"><use href="#i-pin"/></svg></span>Directions</a>
   <a href="#reserve" class="mbar-book"><span><svg class="i"><use href="#i-dine"/></svg></span>Book</a>
 </nav>
+<!-- FULL-SCREEN MENU VIEWER (the menu is only rendered when opened) -->
+<div class="mv" id="menuViewer" role="dialog" aria-modal="true" aria-label="Tulips Garden menu" hidden>
+  <div class="mv-bar">
+    <img src="assets/tulips-logo.png" alt="Tulips Garden" width="480" height="179">
+    <div class="acts">
+      <a class="mv-dl" href="assets/menu/tulips-garden-menu.pdf" download>⬇ PDF</a>
+      <button class="mv-close" type="button" id="menuClose">✕ Close menu</button>
+    </div>
+  </div>
+  <div class="mv-body" id="menuBody"></div>
+</div>
 <script src="assets/menu/menu-data.js"></script>
 <script src="assets/menu/menu.js"></script>
 <script>
@@ -1144,6 +1164,19 @@ Lux.listPicker({btn:$("#ebudgetBtn"),input:$("#ebudget"),eyebrow:"Budget range",
 
 /* Hero video: pause when off-screen */
 (()=>{const v=document.querySelector(".hero-bg");if(!v||!("IntersectionObserver"in window))return;new IntersectionObserver(([e])=>{e.isIntersecting?v.play().catch(()=>{}):v.pause();}).observe(v);})();
+
+/* Full-screen menu: boards are only built and shown when the button is used */
+(()=>{const v=document.getElementById("menuViewer"),body=document.getElementById("menuBody"),close=document.getElementById("menuClose");
+const btn=document.querySelector(".btn-fs");if(!v||!btn)return;let last=null;
+function open(e){e&&e.preventDefault();last=document.activeElement;
+  if(!body.firstChild&&window.renderTulipsMenu)window.renderTulipsMenu(body);
+  v.hidden=false;v.classList.add("open");document.body.classList.add("mv-lock");v.scrollTop=0;close.focus();
+  if(v.requestFullscreen)v.requestFullscreen().catch(()=>{});}
+function shut(){if(v.hidden)return;v.classList.remove("open");v.hidden=true;document.body.classList.remove("mv-lock");
+  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});if(last&&last.focus)last.focus();}
+btn.addEventListener("click",open);close.addEventListener("click",shut);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")shut();});
+document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement)shut();});})();
 </script>
 </body>
 </html>
