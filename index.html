@@ -678,8 +678,8 @@ a.map{display:block;text-decoration:none;color:inherit}
     <div class="reveal"><span class="eyebrow">Our menu</span><h2>Straight from our kitchen</h2><p class="lead">Kenyan favourites cooked fresh, from sizzling choma to Maji Maji pan fry. Open it full screen, download it, or scan the code to keep it on your phone.</p></div>
     <div class="menu-actions reveal">
       <div class="ma-btns">
-        <a class="btn btn-tulip btn-fs" href="menu.html" target="_blank" rel="noopener">⛶ Open full screen menu</a>
-        <a class="btn btn-ghost" href="assets/menu/tulips-garden-menu.pdf" download style="color:var(--leaf)">⬇ Download PDF</a>
+        <a class="btn btn-tulip btn-fs" href="menu.html" target="_blank" rel="noopener">Open full screen menu</a>
+        <a class="btn btn-ghost" href="assets/menu/tulips-garden-menu.pdf" download style="color:var(--leaf)">Download PDF</a>
         <a class="btn btn-wa" data-wa="Hi Tulips Garden, I'd like to place a food order." target="_blank" rel="noopener">Order via WhatsApp</a>
       </div>
       <div class="ma-qr">
@@ -886,8 +886,8 @@ a.map{display:block;text-decoration:none;color:inherit}
   <div class="mv-bar">
     <img src="assets/tulips-logo.png" alt="Tulips Garden" width="480" height="179">
     <div class="acts">
-      <a class="mv-dl" href="assets/menu/tulips-garden-menu.pdf" download>⬇ PDF</a>
-      <button class="mv-close" type="button" id="menuClose">✕ Close menu</button>
+      <a class="mv-dl" href="assets/menu/tulips-garden-menu.pdf" download>Download PDF</a>
+      <button class="mv-close" type="button" id="menuClose">Close menu</button>
     </div>
   </div>
   <div class="mv-body" id="menuBody"></div>
@@ -966,7 +966,7 @@ function card(v){
   el.className="vcard"; el.href=ttUrl(v.id); el.target="_blank"; el.rel="noopener";
   el.setAttribute("aria-label",`Watch "${v.cap}" on TikTok`);
   el.innerHTML=`${art(v.t,v.id)}<span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
-    <span class="meta"><span class="cap">${v.cap}</span><span class="src">▶ Watch on TikTok · @${CONFIG.tiktok}</span></span>`;
+    <span class="meta"><span class="cap">${v.cap}</span><span class="src">Watch on TikTok · @${CONFIG.tiktok}</span></span>`;
   if(CONFIG.embedMode){
     el.addEventListener("click",e=>{e.preventDefault();
       el.innerHTML=`<iframe src="https://www.tiktok.com/embed/v2/${v.id}" allow="autoplay; encrypted-media; fullscreen" loading="lazy" title="${v.cap}"></iframe>`;},{once:true});
