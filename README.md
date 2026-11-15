@@ -19,9 +19,9 @@ Reservation time slots are in the `SLOTS` object in the reservation script.
 ## Deploy
 Upload `index.html` to any static host (Netlify, Vercel, GitHub Pages, cPanel).
 
-## Menu (website, print page, PDF and QR code)
+## Menu (website, full-screen page, PDF and QR code)
 - **Edit prices and items in one place:** `assets/menu/menu-data.js`. The website menu section and `menu.html` both read from it.
-- `menu.html` is the full-screen menu page. The QR code opens it, and it prints as two A4 landscape pages (`menu.html#print` opens the print dialog).
+- `menu.html` is the full-screen menu page. The QR code opens it.
 - After changing the menu, rebuild the PDF and QR code:
   ```
   python3 tools/build_menu.py

@@ -140,6 +140,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 /* Menu */
 .menu-actions{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between;margin:2rem 0 1.4rem}
 .ma-btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn-fs{font-size:1.05rem;padding:.95rem 1.7rem;box-shadow:0 0 0 3px rgba(240,215,123,.25),0 8px 22px rgba(212,175,55,.35)}
+@media(prefers-reduced-motion:no-preference){.btn-fs{animation:fsglow 2.6s ease-in-out infinite}}
+@keyframes fsglow{50%{box-shadow:0 0 0 7px rgba(240,215,123,.12),0 8px 26px rgba(212,175,55,.5)}}
 .ma-qr{display:flex;align-items:center;gap:.9rem;background:#fffaf0;color:#222;border:3px solid var(--tulip);border-radius:14px;padding:.6rem .9rem .6rem .6rem;max-width:380px}
 .ma-qr img{width:92px;height:92px;image-rendering:pixelated;flex:none}
 .ma-qr b{display:block;font-family:var(--serif);color:#4a0b0e;font-size:1.05rem}
@@ -319,6 +322,7 @@ a.map{display:block;text-decoration:none;color:inherit}
   .carousel .vcard{flex-basis:46vw}
   .ma-btns{display:grid;grid-template-columns:1fr 1fr;width:100%}
   .ma-btns .btn{justify-content:center;padding:.75rem .5rem;font-size:.85rem}
+  .ma-btns .btn-fs{grid-column:1/-1;font-size:1rem;padding:.9rem .5rem}
   .ma-qr{max-width:none;width:100%}
 
   .split{gap:2rem}
@@ -658,12 +662,11 @@ a.map{display:block;text-decoration:none;color:inherit}
 <!-- MENU -->
 <section class="tint" id="menu-sec">
   <div class="wrap">
-    <div class="reveal"><span class="eyebrow">Our menu</span><h2>Straight from our kitchen</h2><p class="lead">Kenyan favourites cooked fresh, from sizzling choma to Maji Maji pan fry. Download it, print it, or scan the code to keep it on your phone.</p></div>
+    <div class="reveal"><span class="eyebrow">Our menu</span><h2>Straight from our kitchen</h2><p class="lead">Kenyan favourites cooked fresh, from sizzling choma to Maji Maji pan fry. Open it full screen, download it, or scan the code to keep it on your phone.</p></div>
     <div class="menu-actions reveal">
       <div class="ma-btns">
-        <a class="btn btn-tulip" href="assets/menu/tulips-garden-menu.pdf" download>⬇ Download PDF</a>
-        <a class="btn btn-ghost" href="menu.html#print" target="_blank" rel="noopener" style="color:var(--leaf)">🖨 Print menu</a>
-        <a class="btn btn-ghost" href="menu.html" target="_blank" rel="noopener" style="color:var(--leaf)">Open full screen</a>
+        <a class="btn btn-tulip btn-fs" href="menu.html" target="_blank" rel="noopener">⛶ Open full screen menu</a>
+        <a class="btn btn-ghost" href="assets/menu/tulips-garden-menu.pdf" download style="color:var(--leaf)">⬇ Download PDF</a>
         <a class="btn btn-wa" data-wa="Hi Tulips Garden, I'd like to place a food order." target="_blank" rel="noopener">Order via WhatsApp</a>
       </div>
       <div class="ma-qr">

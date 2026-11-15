@@ -31,19 +31,11 @@
   <a class="home" href="./"><img src="assets/tulips-logo.png" alt="Tulips Garden"><span>← Back to website</span></a>
   <div class="acts">
     <a class="btn gold" href="assets/menu/tulips-garden-menu.pdf" download>⬇ Download PDF</a>
-    <button class="btn ghost" type="button" onclick="window.print()">🖨 Print</button>
     <a class="btn ghost" href="https://wa.me/254717333300?text=Hi%20Tulips%20Garden%2C%20I%27d%20like%20to%20place%20a%20food%20order." target="_blank" rel="noopener">Order on WhatsApp</a>
   </div>
 </header>
 <main><div data-tulips-menu></div></main>
 <script src="assets/menu/menu-data.js"></script>
 <script src="assets/menu/menu.js"></script>
-<script>
-  /* menu.html#print opens the print dialog once fonts and images are ready */
-  if (location.hash === "#print") {
-    const imgs = [...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }));
-    Promise.all([document.fonts ? document.fonts.ready : 0, ...imgs]).then(() => setTimeout(() => window.print(), 300));
-  }
-</script>
 </body>
 </html>
