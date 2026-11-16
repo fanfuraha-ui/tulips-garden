@@ -232,6 +232,9 @@ textarea{min-height:110px;resize:vertical}
 .party-points span{color:var(--muted);font-size:.92rem}
 .party-vids{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.6rem 0 1rem}
 .party-vids video{width:100%;aspect-ratio:9/14;object-fit:cover;border-radius:18px;border:1px solid rgba(212,175,55,.45);background:#000;box-shadow:0 14px 30px rgba(0,0,0,.5)}
+.party-feature{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.pg-tile.pg-wide{margin:0;aspect-ratio:3/2}
+.pg-tile.pg-wide img{height:100%;object-fit:cover}
 .party-gallery{columns:4 200px;column-gap:1rem}
 .pg-tile{display:block;width:100%;margin:0 0 1rem;padding:0;border:1px solid rgba(212,175,55,.35);border-radius:16px;overflow:hidden;background:#000;cursor:zoom-in;break-inside:avoid}
 .pg-tile img{display:block;width:100%;height:auto;transition:transform .5s}
@@ -245,6 +248,9 @@ textarea{min-height:110px;resize:vertical}
   .party-vids video{flex:0 0 46vw;width:46vw;scroll-snap-align:start}
   .pg-tile{flex:0 0 58vw;margin:0;aspect-ratio:3/4;scroll-snap-align:start}
   .pg-tile img{height:100%;object-fit:cover}
+  .party-feature{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.7rem;margin:0 -5vw .7rem;padding:0 5vw .4rem;scrollbar-width:none}
+  .party-feature::-webkit-scrollbar{display:none}
+  .pg-tile.pg-wide{flex:0 0 86vw;aspect-ratio:3/2}
 }
 
 /* Follow */
@@ -733,6 +739,10 @@ a.map{display:block;text-decoration:none;color:inherit}
       <video src="assets/party/party-bottles.mp4" poster="assets/party/party-bottles-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Bottles on ice"></video>
       <video src="assets/party/party-redlabel.mp4" poster="assets/party/party-redlabel-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Johnnie Walker Red Label"></video>
     </div>
+    <div class="party-feature reveal">
+      <button type="button" class="pg-tile pg-wide" data-lg="assets/party/bar-shelves-lg.jpg" data-cap="Our bar, lit up at night" aria-label="See a larger photo: Our bar, lit up at night"><img src="assets/party/bar-shelves-md.jpg" alt="The Tulips Garden bar with backlit shelves of spirits and wine, a TV and bar stools" width="900" height="600" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile pg-wide" data-lg="assets/party/bar-lounge-lg.jpg" data-cap="Bar stools and lounge seating" aria-label="See a larger photo: Bar stools and lounge seating"><img src="assets/party/bar-lounge-md.jpg" alt="The Tulips Garden bar counter with suede bar stools, a round table and fully stocked shelves" width="900" height="600" loading="lazy" decoding="async"></button>
+    </div>
     <div class="party-gallery">
       <button type="button" class="pg-tile" data-lg="assets/party/bottle-service-martell-lg.jpg" data-cap="Martell VSOP on ice" aria-label="See a larger photo: Martell VSOP on ice"><img src="assets/party/bottle-service-martell-md.jpg" alt="Martell VSOP on ice" loading="lazy" decoding="async"></button>
       <button type="button" class="pg-tile" data-lg="assets/party/flaming-shots-lg.jpg" data-cap="Flaming shots at the bar" aria-label="See a larger photo: Flaming shots at the bar"><img src="assets/party/flaming-shots-md.jpg" alt="Flaming shots at the bar" loading="lazy" decoding="async"></button>
@@ -741,7 +751,6 @@ a.map{display:block;text-decoration:none;color:inherit}
       <button type="button" class="pg-tile" data-lg="assets/party/negroni-lg.jpg" data-cap="Signature cocktail" aria-label="See a larger photo: Signature cocktail"><img src="assets/party/negroni-md.jpg" alt="Signature cocktail" loading="lazy" decoding="async"></button>
       <button type="button" class="pg-tile" data-lg="assets/party/grants-on-ice-lg.jpg" data-cap="Grant's with an ice bucket" aria-label="See a larger photo: Grant's with an ice bucket"><img src="assets/party/grants-on-ice-md.jpg" alt="Grant's with an ice bucket" loading="lazy" decoding="async"></button>
       <button type="button" class="pg-tile" data-lg="assets/party/jack-and-choma-lg.jpg" data-cap="Jack Daniel's with nyama choma" aria-label="See a larger photo: Jack Daniel's with nyama choma"><img src="assets/party/jack-and-choma-md.jpg" alt="Jack Daniel's with nyama choma" loading="lazy" decoding="async"></button>
-      <button type="button" class="pg-tile" data-lg="assets/party/macallan-lg.jpg" data-cap="The Macallan 12" aria-label="See a larger photo: The Macallan 12"><img src="assets/party/macallan-md.jpg" alt="The Macallan 12" loading="lazy" decoding="async"></button>
       <button type="button" class="pg-tile" data-lg="assets/party/lime-cocktail-lg.jpg" data-cap="Rum & lime on the rocks" aria-label="See a larger photo: Rum & lime on the rocks"><img src="assets/party/lime-cocktail-md.jpg" alt="Rum & lime on the rocks" loading="lazy" decoding="async"></button>
       <button type="button" class="pg-tile" data-lg="assets/party/bar-counter-lg.jpg" data-cap="Drinks at the bar" aria-label="See a larger photo: Drinks at the bar"><img src="assets/party/bar-counter-md.jpg" alt="Drinks at the bar" loading="lazy" decoding="async"></button>
       <button type="button" class="pg-tile" data-lg="assets/party/jack-daniels-lg.jpg" data-cap="Jack Daniel's" aria-label="See a larger photo: Jack Daniel's"><img src="assets/party/jack-daniels-md.jpg" alt="Jack Daniel's" loading="lazy" decoding="async"></button>
