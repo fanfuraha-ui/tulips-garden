@@ -230,9 +230,9 @@ textarea{min-height:110px;resize:vertical}
 .party-points li{padding:.85rem 1rem;border:1px solid rgba(212,175,55,.35);border-radius:14px;background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(0,0,0,.3))}
 .party-points b{display:block;font-family:var(--serif);color:var(--leaf);font-size:1.08rem}
 .party-points span{color:var(--muted);font-size:.92rem}
-.party-vids{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.6rem 0 1rem}
+.party-vids{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:0 0 1rem}
 .party-vids video{width:100%;aspect-ratio:9/14;object-fit:cover;border-radius:18px;border:1px solid rgba(212,175,55,.45);background:#000;box-shadow:0 14px 30px rgba(0,0,0,.5)}
-.party-feature{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.party-feature{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2.6rem 0 1rem}
 .pg-tile.pg-wide{margin:0;aspect-ratio:3/2}
 .pg-tile.pg-wide img{height:100%;object-fit:cover}
 .party-gallery{columns:4 200px;column-gap:1rem}
@@ -248,7 +248,7 @@ textarea{min-height:110px;resize:vertical}
   .party-vids video{flex:0 0 46vw;width:46vw;scroll-snap-align:start}
   .pg-tile{flex:0 0 58vw;margin:0;aspect-ratio:3/4;scroll-snap-align:start}
   .pg-tile img{height:100%;object-fit:cover}
-  .party-feature{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.7rem;margin:0 -5vw .7rem;padding:0 5vw .4rem;scrollbar-width:none}
+  .party-feature{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.7rem;margin:1.8rem -5vw .7rem;padding:0 5vw .4rem;scrollbar-width:none}
   .party-feature::-webkit-scrollbar{display:none}
   .pg-tile.pg-wide{flex:0 0 86vw;aspect-ratio:3/2}
 }
@@ -733,15 +733,15 @@ a.map{display:block;text-decoration:none;color:inherit}
         <li><b>Party tables</b><span>Reserve ahead for birthdays and group nights</span></li>
       </ul>
     </div>
+    <div class="party-feature reveal">
+      <button type="button" class="pg-tile pg-wide" data-lg="assets/party/bar-shelves-lg.jpg" data-cap="Our bar, lit up at night" aria-label="See a larger photo: Our bar, lit up at night"><img src="assets/party/bar-shelves-md.jpg" alt="The Tulips Garden bar with backlit shelves of spirits and wine, a TV and bar stools" width="900" height="600" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile pg-wide" data-lg="assets/party/bar-lounge-lg.jpg" data-cap="Bar stools and lounge seating" aria-label="See a larger photo: Bar stools and lounge seating"><img src="assets/party/bar-lounge-md.jpg" alt="The Tulips Garden bar counter with suede bar stools, a round table and fully stocked shelves" width="900" height="600" loading="lazy" decoding="async"></button>
+    </div>
     <div class="party-vids reveal">
       <video src="assets/party/party-pour.mp4" poster="assets/party/party-pour-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Whisky poured over ice"></video>
       <video src="assets/party/party-flames.mp4" poster="assets/party/party-flames-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Flaming shots"></video>
       <video src="assets/party/party-bottles.mp4" poster="assets/party/party-bottles-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Bottles on ice"></video>
       <video src="assets/party/party-redlabel.mp4" poster="assets/party/party-redlabel-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Johnnie Walker Red Label"></video>
-    </div>
-    <div class="party-feature reveal">
-      <button type="button" class="pg-tile pg-wide" data-lg="assets/party/bar-shelves-lg.jpg" data-cap="Our bar, lit up at night" aria-label="See a larger photo: Our bar, lit up at night"><img src="assets/party/bar-shelves-md.jpg" alt="The Tulips Garden bar with backlit shelves of spirits and wine, a TV and bar stools" width="900" height="600" loading="lazy" decoding="async"></button>
-      <button type="button" class="pg-tile pg-wide" data-lg="assets/party/bar-lounge-lg.jpg" data-cap="Bar stools and lounge seating" aria-label="See a larger photo: Bar stools and lounge seating"><img src="assets/party/bar-lounge-md.jpg" alt="The Tulips Garden bar counter with suede bar stools, a round table and fully stocked shelves" width="900" height="600" loading="lazy" decoding="async"></button>
     </div>
     <div class="party-gallery">
       <button type="button" class="pg-tile" data-lg="assets/party/bottle-service-martell-lg.jpg" data-cap="Martell VSOP on ice" aria-label="See a larger photo: Martell VSOP on ice"><img src="assets/party/bottle-service-martell-md.jpg" alt="Martell VSOP on ice" loading="lazy" decoding="async"></button>
