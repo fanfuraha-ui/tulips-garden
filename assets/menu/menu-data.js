@@ -10,11 +10,32 @@ window.TULIPS_MENU = {
   platters: [
     { n: "Tulips Quad Platter", p: "3,900",
       d: "Beef portion, mbuzi portion, full broiler chicken, 2 choma sausages & greens. Any 3 sides.",
-      tag: "Free 1L Minute Maid" },
+      tag: "Free 1L Minute Maid", img: "quad-platter" },
     { n: "Family Platter", sub: "Serves 6", p: "6,500",
       d: "Beef, pork, mutton & fish fillet portions, full chicken, 4 choma sausages & 2 greens. Any 4 sides.",
       tag: "Free 1L Minute Maid" }
   ],
+  /* Food photos: menu item name -> file in assets/menu/photos/ (NAME.jpg thumbnail, NAME-lg.jpg large).
+     Make new ones with: python3 tools/menu_photos.py FOLDER_WITH_ORIGINALS */
+  photos: {
+    "Tulips Full Breakfast": "full-breakfast",
+    "Tea": "tea",
+    "Coffee": "coffee",
+    "Broiler Chicken": "broiler-chicken",
+    "Pork Spare Ribs": "spare-ribs",
+    "Beef Maji Maji": "beef-maji-maji",
+    "Beef Meat": "beef-meat",
+    "Whole Tilapia": "tilapia",
+    "Choma Sausages": "choma-sausages",
+    "Special Choma Sausages": "special-sausages",
+    "Chicken Wings": "chicken-wings",
+    "Brown Ugali": "brown-ugali",
+    "Chapati": "chapati",
+    "Spinach": "spinach",
+    "Chips & Sausages": "chips-sausages",
+    "Spaghetti & Meatballs": "spaghetti"
+  },
+
   platterNote: "Sides: chips, sauté, ugali, rice or wedges",
 
   /* Mains: [name, full / 1 kg price, half / ½ kg price, note] */

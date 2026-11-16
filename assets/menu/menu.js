@@ -4,8 +4,18 @@
   if (!M) return;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
-  const list = (rows, cls = "") => `<ul class="tm-list ${cls}">${rows.map(([n, p, d]) =>
-    `<li><span class="n">${esc(n)}</span><span class="p">${esc(p)}</span>${d ? `<span class="d">${esc(d)}</span>` : ""}</li>`).join("")}</ul>`;
+  const PH = M.photos || {};
+  const DIR = "assets/menu/photos/";
+  /* Food photo thumbnail; tapping it opens the large photo */
+  const ph = (n, key = PH[n]) => key
+    ? `<button type="button" class="tm-ph" data-lg="${DIR}${key}-lg.jpg" aria-label="See a photo of ${esc(n)}"><img src="${DIR}${key}.jpg" alt="${esc(n)}" width="360" height="360" loading="lazy" decoding="async"></button>`
+    : `<span class="tm-ph none" aria-hidden="true"></span>`;
+
+  const list = (rows, cls = "") => {
+    const pics = rows.some(([n]) => PH[n]);
+    return `<ul class="tm-list ${cls}${pics ? " has-ph" : ""}">${rows.map(([n, p, d]) =>
+      `<li>${pics ? ph(n) : ""}<span class="n">${esc(n)}</span><span class="p">${esc(p)}</span>${d ? `<span class="d">${esc(d)}</span>` : ""}</li>`).join("")}</ul>`;
+  };
 
   const head = (small, big, cls = "") => `<h3 class="tm-h ${cls}">${small ? `<small>${small}</small>` : ""}<b>${big}</b></h3>`;
 
@@ -32,10 +42,10 @@
   const music = `<svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 3c.5 2.5 2.5 4.5 5 5"/></svg>`;
 
   const mains = `<table class="tm-table"><thead><tr><th>Item</th><th>Full / 1 kg</th><th>Half / ½ kg</th></tr></thead><tbody>${
-    M.mains.map(([n, f, h, d]) => `<tr><td><span class="n">${esc(n)}</span>${d ? `<span class="d">${esc(d)}</span>` : ""}</td><td class="p">${esc(f)}</td><td class="p${h ? "" : " e"}">${h ? esc(h) : "–"}</td></tr>`).join("")
+    M.mains.map(([n, f, h, d]) => `<tr><td><div class="tm-cell">${ph(n)}<div><span class="n">${esc(n)}</span>${d ? `<span class="d">${esc(d)}</span>` : ""}</div></div></td><td class="p">${esc(f)}</td><td class="p${h ? "" : " e"}">${h ? esc(h) : "–"}</td></tr>`).join("")
   }</tbody></table>`;
 
-  const platters = M.platters.map(p => `<div class="tm-platter"><h4>${esc(p.n)}${p.sub ? `<span>${esc(p.sub)}</span>` : ""}</h4>
+  const platters = M.platters.map(p => `<div class="tm-platter${p.img ? " has-ph" : ""}">${p.img ? ph(p.n, p.img) : ""}<h4>${esc(p.n)}${p.sub ? `<span>${esc(p.sub)}</span>` : ""}</h4>
     <span class="price"><small>KSh</small> ${esc(p.p)}</span><p>${esc(p.d)}</p>${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ""}</div>`).join("");
 
   const board1 = `<article class="tm-board b1" aria-label="Tulips Garden menu, page 1">${swoosh1}
@@ -86,6 +96,30 @@
       <div class="tm-qr"><img src="assets/menu/menu-qr.png" alt="QR code linking to the online menu" width="330" height="330"><div><b>Scan for our menu</b><span>Open it on your phone anytime</span></div></div>
     </div>
   </article>`;
+
+  /* Photo viewer: one shared overlay, built the first time a photo is tapped */
+  let viewer;
+  const openPhoto = btn => {
+    if (!viewer) {
+      viewer = document.createElement("div");
+      viewer.className = "tm-viewer";
+      viewer.setAttribute("role", "dialog");
+      viewer.setAttribute("aria-modal", "true");
+      viewer.innerHTML = `<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="tm-viewer-x" aria-label="Close photo">&times;</button>`;
+      viewer.addEventListener("click", e => { if (e.target === viewer || e.target.closest(".tm-viewer-x")) closePhoto(); });
+      document.body.appendChild(viewer);
+    }
+    const img = viewer.querySelector("img"), name = btn.querySelector("img").alt;
+    img.src = btn.dataset.lg; img.alt = name;
+    viewer.querySelector("figcaption").textContent = name;
+    viewer.setAttribute("aria-label", name);
+    viewer.classList.add("open");
+    viewer._from = btn;
+    viewer.querySelector(".tm-viewer-x").focus();
+  };
+  const closePhoto = () => { if (!viewer) return; viewer.classList.remove("open"); viewer._from && viewer._from.focus(); };
+  document.addEventListener("click", e => { const b = e.target.closest(".tm-ph[data-lg]"); if (b) { e.preventDefault(); e.stopPropagation(); openPhoto(b); } }, true);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && viewer && viewer.classList.contains("open")) { e.stopImmediatePropagation(); closePhoto(); } }, true);
 
   window.renderTulipsMenu = el => { el.classList.add("tm"); el.innerHTML = board1 + board2; };
   document.querySelectorAll("[data-tulips-menu]").forEach(window.renderTulipsMenu);
