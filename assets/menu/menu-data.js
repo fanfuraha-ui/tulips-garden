@@ -13,28 +13,22 @@ window.TULIPS_MENU = {
       tag: "Free 1L Minute Maid", img: "quad-platter" },
     { n: "Family Platter", sub: "Serves 6", p: "6,500",
       d: "Beef, pork, mutton & fish fillet portions, full chicken, 4 choma sausages & 2 greens. Any 4 sides.",
-      tag: "Free 1L Minute Maid" }
+      tag: "Free 1L Minute Maid", imgs: ["beef-meat", "tilapia", "choma-sausages"] }
   ],
-  /* Food photos: menu item name -> file in assets/menu/photos/ (NAME.jpg thumbnail, NAME-lg.jpg large).
-     Make new ones with: python3 tools/menu_photos.py FOLDER_WITH_ORIGINALS */
-  photos: {
-    "Tulips Full Breakfast": "full-breakfast",
-    "Tea": "tea",
-    "Coffee": "coffee",
-    "Broiler Chicken": "broiler-chicken",
-    "Kuku Kienyeji": "kuku-kienyeji",
-    "Pork Spare Ribs": "spare-ribs",
-    "Beef Maji Maji": "beef-maji-maji",
-    "Beef Meat": "beef-meat",
-    "Whole Tilapia": "tilapia",
-    "Choma Sausages": "choma-sausages",
-    "Special Choma Sausages": "special-sausages",
-    "Brown Ugali": "brown-ugali",
-    "Chapati": "chapati",
-    "Spinach": "spinach",
-    "Chips & Sausages": "chips-sausages",
-    "Spaghetti & Meatballs": "spaghetti"
+  /* Photos shown inside the menu boards (website full-screen menu, menu.html and the PDF).
+     [photo file in assets/menu/photos/, item name]. The price is looked up from the item name.
+     Make new photos with: python3 tools/menu_photos.py FOLDER_WITH_ORIGINALS */
+  sectionPhotos: {
+    mains: [["broiler-chicken", "Broiler Chicken"], ["spare-ribs", "Pork Spare Ribs"], ["tilapia", "Whole Tilapia"],
+            ["kuku-kienyeji", "Kuku Kienyeji"], ["beef-meat", "Beef Meat"], ["beef-maji-maji", "Beef Maji Maji"]],
+    breakfast: [["full-breakfast", "Tulips Full Breakfast"]],
+    drinks: [["tea", "Tea"], ["coffee", "Coffee"]],
+    snacks: [["choma-sausages", "Choma Sausages"], ["special-sausages", "Special Choma Sausages"]],
+    kids: [["chips-sausages", "Chips & Sausages"], ["spaghetti", "Spaghetti & Meatballs"]],
+    sides: [["brown-ugali", "Brown Ugali"], ["chapati", "Chapati"], ["spinach", "Spinach"]]
   },
+  /* Optional focus point per photo when it is cropped to fit a frame */
+  photoPos: { "full-breakfast": "50% 72%", "coffee": "62% 68%", "tea": "50% 40%", "kuku-kienyeji": "50% 60%" },
 
   /* Food gallery on the website menu section: [photo file, caption]. Tap a photo to see it large. */
   gallery: [

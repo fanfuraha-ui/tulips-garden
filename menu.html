@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Menu · Tulips Garden, Gikambura Kikuyu</title>
-<meta name="description" content="The Tulips Garden menu: platters, nyama choma and grills, breakfast, snacks, drinks, sides and kids' meals. Opposite Shell, Gikambura, Kikuyu.">
+<meta name="description" content="The Tulips Garden menu with food photos: platters, nyama choma and grills, breakfast, snacks, drinks, sides and kids' meals. Opposite Shell, Gikambura, Kikuyu.">
 <meta name="theme-color" content="#121010">
 <meta property="og:title" content="Tulips Garden Menu">
 <meta property="og:description" content="Platters, grills, breakfast, snacks, drinks and more. Call 0717 333 300.">
@@ -30,6 +30,7 @@
 <header class="bar">
   <a class="home" href="./"><img src="assets/tulips-logo.png" alt="Tulips Garden"><span>← Back to website</span></a>
   <div class="acts">
+    <button class="btn ghost" type="button" id="printMenu">Print</button>
     <a class="btn gold" href="assets/menu/tulips-garden-menu.pdf" download>Download PDF</a>
     <a class="btn ghost" href="https://wa.me/254717333300?text=Hi%20Tulips%20Garden%2C%20I%27d%20like%20to%20place%20a%20food%20order." target="_blank" rel="noopener">Order on WhatsApp</a>
   </div>
@@ -37,5 +38,11 @@
 <main><div data-tulips-menu></div></main>
 <script src="assets/menu/menu-data.js"></script>
 <script src="assets/menu/menu.js"></script>
+<script>
+/* Print only after the fonts and food photos have loaded. menu.html?print prints straight away. */
+const printWhenReady = () => Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))]).then(() => print());
+document.getElementById("printMenu").onclick = printWhenReady;
+if (/[?&]print\b/.test(location.search)) printWhenReady();
+</script>
 </body>
 </html>
