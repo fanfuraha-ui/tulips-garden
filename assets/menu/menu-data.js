@@ -22,19 +22,41 @@ window.TULIPS_MENU = {
     "Tea": "tea",
     "Coffee": "coffee",
     "Broiler Chicken": "broiler-chicken",
+    "Kuku Kienyeji": "kuku-kienyeji",
     "Pork Spare Ribs": "spare-ribs",
     "Beef Maji Maji": "beef-maji-maji",
     "Beef Meat": "beef-meat",
     "Whole Tilapia": "tilapia",
     "Choma Sausages": "choma-sausages",
     "Special Choma Sausages": "special-sausages",
-    "Chicken Wings": "chicken-wings",
     "Brown Ugali": "brown-ugali",
     "Chapati": "chapati",
     "Spinach": "spinach",
     "Chips & Sausages": "chips-sausages",
     "Spaghetti & Meatballs": "spaghetti"
   },
+
+  /* Food gallery on the website menu section: [photo file, caption]. Tap a photo to see it large. */
+  gallery: [
+    ["tomahawk-steak", "Tomahawk steaks off the grill"],
+    ["steak-noodles", "Seared beef with noodles"],
+    ["quad-platter", "Tulips Quad Platter"],
+    ["spare-ribs", "Pork spare ribs"],
+    ["tilapia", "Whole grilled tilapia"],
+    ["broiler-chicken", "Roast broiler chicken"],
+    ["kuku-kienyeji", "Kuku kienyeji"],
+    ["beef-meat", "Beef, sliced to share"],
+    ["beef-maji-maji", "Beef maji maji"],
+    ["choma-sausages", "Choma sausages"],
+    ["special-sausages", "Special choma sausages"],
+    ["brown-ugali", "Brown ugali, chicken & greens"],
+    ["full-breakfast", "Tulips Full Breakfast"],
+    ["chapati", "Soft layered chapati"],
+    ["chips-sausages", "Masala chips & sausages"],
+    ["spaghetti", "Spaghetti & meatballs"],
+    ["tea", "Kenyan chai"],
+    ["coffee", "Hot black coffee"]
+  ],
 
   platterNote: "Sides: chips, sauté, ugali, rice or wedges",
 

@@ -109,7 +109,7 @@
       viewer.addEventListener("click", e => { if (e.target === viewer || e.target.closest(".tm-viewer-x")) closePhoto(); });
       document.body.appendChild(viewer);
     }
-    const img = viewer.querySelector("img"), name = btn.querySelector("img").alt;
+    const img = viewer.querySelector("img"), name = btn.dataset.cap || btn.querySelector("img").alt;
     img.src = btn.dataset.lg; img.alt = name;
     viewer.querySelector("figcaption").textContent = name;
     viewer.setAttribute("aria-label", name);
@@ -118,9 +118,15 @@
     viewer.querySelector(".tm-viewer-x").focus();
   };
   const closePhoto = () => { if (!viewer) return; viewer.classList.remove("open"); viewer._from && viewer._from.focus(); };
-  document.addEventListener("click", e => { const b = e.target.closest(".tm-ph[data-lg]"); if (b) { e.preventDefault(); e.stopPropagation(); openPhoto(b); } }, true);
+  document.addEventListener("click", e => { const b = e.target.closest("[data-lg]"); if (b) { e.preventDefault(); e.stopPropagation(); openPhoto(b); } }, true);
   document.addEventListener("keydown", e => { if (e.key === "Escape" && viewer && viewer.classList.contains("open")) { e.stopImmediatePropagation(); closePhoto(); } }, true);
 
   window.renderTulipsMenu = el => { el.classList.add("tm"); el.innerHTML = board1 + board2; };
   document.querySelectorAll("[data-tulips-menu]").forEach(window.renderTulipsMenu);
+
+  /* Food gallery: any element with [data-food-gallery] */
+  document.querySelectorAll("[data-food-gallery]").forEach(el => {
+    el.innerHTML = (M.gallery || []).map(([k, c]) =>
+      `<button type="button" class="fg-tile" data-lg="${DIR}${k}-lg.jpg" data-cap="${esc(c)}" aria-label="See a larger photo: ${esc(c)}"><img src="${DIR}${k}-md.jpg" alt="${esc(c)}" loading="lazy" decoding="async"><span>${esc(c)}</span></button>`).join("");
+  });
 })();

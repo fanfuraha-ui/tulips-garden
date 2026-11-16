@@ -152,6 +152,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.9);backdrop-filte
 .ma-qr span{display:block;font-size:.82rem;color:#444}
 .ma-qr a{font-size:.8rem;font-weight:700;color:#7a1418}
 .menu-actions{margin-bottom:2.4rem}
+.fg-head h3{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);color:var(--leaf)}
+.fg-head p{color:var(--muted);font-size:.95rem;margin-top:.2rem}
 .mv{position:fixed;inset:0;z-index:200;background:#0b0b0b;overflow-y:auto;overscroll-behavior:contain;display:none}
 .mv.open{display:block}
 .mv-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.7rem 4%;background:rgba(11,11,11,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(212,175,55,.3)}
@@ -676,6 +678,8 @@ a.map{display:block;text-decoration:none;color:inherit}
         <div><b>Scan for our menu</b><span>Point your phone camera here</span><a href="assets/menu/menu-qr.png" download="tulips-garden-menu-qr.png">Download QR (PNG)</a> · <a href="assets/menu/menu-qr.svg" download="tulips-garden-menu-qr.svg">SVG for printing</a></div>
       </div>
     </div>
+    <div class="fg-head reveal"><h3>From our kitchen</h3><p>Tap any photo to see it up close.</p></div>
+    <div class="food-gallery" data-food-gallery></div>
   </div>
 </section>
 

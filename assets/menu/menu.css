@@ -124,6 +124,21 @@
 .tm-viewer figcaption{margin-top:.8rem;font:italic 700 1.3rem "TG Lora",Georgia,serif;color:#f0d77b}
 .tm-viewer-x{position:absolute;top:1rem;right:1rem;width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid #d4af37;background:rgba(0,0,0,.6);color:#f0d77b;font-size:1.6rem;line-height:1;cursor:pointer}
 
+/* Food gallery (website menu section) */
+.food-gallery{columns:4 210px;column-gap:1rem;margin-top:1.2rem}
+.fg-tile{position:relative;display:block;width:100%;margin:0 0 1rem;padding:0;border:1px solid rgba(212,175,55,.35);border-radius:16px;overflow:hidden;background:#111;cursor:zoom-in;break-inside:avoid;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.fg-tile img{display:block;width:100%;height:auto;transition:transform .5s}
+.fg-tile:hover img,.fg-tile:focus-visible img{transform:scale(1.05)}
+.fg-tile:focus-visible{outline:2px solid #f0d77b;outline-offset:2px}
+.fg-tile span{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .8rem .65rem;text-align:left;font:600 .9rem "TG Poppins",system-ui,sans-serif;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.78))}
+@media(max-width:620px){
+  .food-gallery{columns:auto;display:flex;gap:.7rem;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-5vw;padding:0 5vw .4rem;scrollbar-width:none}
+  .food-gallery::-webkit-scrollbar{display:none}
+  .fg-tile{flex:0 0 62vw;margin:0;aspect-ratio:4/5;scroll-snap-align:start}
+  .fg-tile img{height:100%;object-fit:cover}
+  .fg-tile span{font-size:.82rem}
+}
+
 /* Phones and small tablets: stack the columns */
 @container (max-width:760px){
   .tm-board{aspect-ratio:auto;font-size:14px;padding:1.6em 1.3em;gap:2em;border-radius:12px}

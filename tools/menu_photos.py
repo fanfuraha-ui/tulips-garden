@@ -5,7 +5,8 @@
 
 For each entry in PHOTOS it writes, into assets/menu/photos/:
   <slug>.jpg     square thumbnail (360 px), cropped around the food, for the menu boards and PDF
-  <slug>-lg.jpg  large view (max 1280 px), original framing, opened when a thumbnail is tapped
+  <slug>-md.jpg  gallery tile (640 px wide), original framing
+  <slug>-lg.jpg  large view (max 1280 px), original framing, opened when a photo is tapped
 """
 import pathlib, sys
 from PIL import Image, ImageOps, ImageEnhance
@@ -27,11 +28,14 @@ PHOTOS = {
     "broiler-chicken":  ("0a162fce-image.jpg", .50, .52, 1.0),
     "quad-platter":     ("0a84d3f6-image.jpg", .50, .50, 1.0),
     "beef-meat":        ("482e1877-image.jpg", .50, .52, 1.0),
-    "chicken-wings":    ("618c2110-image.jpg", .50, .55, 1.0),
+    "kuku-kienyeji":    ("618c2110-image.jpg", .50, .55, 1.0),
     "choma-sausages":   ("e57b2704-image.jpg", .50, .50, 1.0),
     "special-sausages": ("05ebf02a-image.jpg", .52, .55, 1.0),
     "tilapia":          ("a45a029a-image.jpg", .50, .48, 1.0),
     "spare-ribs":       ("84d11c4b-image.jpg", .50, .45, 1.0),
+    # Gallery only (not on the menu)
+    "tomahawk-steak":   ("ae8b0b6a-image.jpg", .50, .50, 1.0),
+    "steak-noodles":    ("8ec7cbc8-image.jpg", .50, .50, 1.0),
 }
 
 
@@ -50,6 +54,9 @@ def main(src):
         thumb = im.crop((x, y, x + s, y + s)).resize((360, 360), Image.LANCZOS)
         thumb = ImageEnhance.Sharpness(thumb).enhance(1.15)
         save(thumb, OUT / f"{slug}.jpg", 84)
+        md = im.copy()
+        md.thumbnail((640, 2000), Image.LANCZOS)
+        save(md, OUT / f"{slug}-md.jpg", 80)
         lg = im.copy()
         lg.thumbnail((1280, 1280), Image.LANCZOS)
         save(lg, OUT / f"{slug}-lg.jpg", 82)
