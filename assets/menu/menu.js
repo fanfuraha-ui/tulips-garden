@@ -8,17 +8,10 @@
   const SP = M.sectionPhotos || {};
   const POS = M.photoPos || {};
 
-  /* Price lookup by item name, so photo captions always match the price list */
-  const rows = [...M.mains, ...M.breakfast, ...M.hotDrinks, ...M.snacks, ...M.starches, ...M.greens, ...M.kids];
-  const priceOf = n => (rows.find(r => r[0] === n) || [])[1] || "";
-
   /* A framed food photo; tapping it opens the large photo */
   const tile = (k, name, o = {}) => {
-    const p = o.price !== undefined ? o.price : priceOf(name);
     return `<button type="button" class="tm-tile${o.cls ? " " + o.cls : ""}" data-lg="${DIR}${k}-lg.jpg" data-cap="${esc(name)}" aria-label="See a larger photo of ${esc(name)}">
       <img src="${DIR}${k}${o.big ? "-lg" : o.small ? "" : "-md"}.jpg" alt="${esc(name)}" decoding="async"${POS[k] ? ` style="object-position:${POS[k]}"` : ""}>
-      ${o.ribbon ? `<span class="tm-ribbon">${esc(o.ribbon)}</span>` : ""}
-      ${o.noCap ? "" : `<span class="cap"><span>${esc(name)}</span>${p ? `<b>${o.big ? "KSh " : ""}${esc(p)}</b>` : ""}</span>`}
     </button>`;
   };
   const photos = (list, cls = "") => list && list.length
@@ -39,14 +32,21 @@
 
   /* ---------- Page 1: platters + breakfast ---------- */
   const [quad, fam] = M.platters;
-  const platterBody = p => `<div class="tm-pbody"><h4>${esc(p.n)}${p.sub ? `<span>${esc(p.sub)}</span>` : ""}</h4>
-    <span class="tm-price"><small>KSh</small> ${esc(p.p)}</span><p>${esc(p.d)}</p>${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ""}</div>`;
+  /* "Beef portion, mbuzi portion & greens. Any 3 sides." -> list of contents + the sides line */
+  const platterBody = p => {
+    const [what, ...rest] = p.d.split(/\.\s*/).filter(Boolean);
+    const items = what.split(/,\s*|\s+&\s+/).map(i => i.charAt(0).toUpperCase() + i.slice(1));
+    return `<div class="tm-pbody"><h4>${esc(p.n)}${p.sub ? `<span>${esc(p.sub)}</span>` : ""}</h4>
+    <span class="tm-price"><small>KSh</small> ${esc(p.p)}</span>
+    <ul class="tm-inc">${items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
+    <p class="tm-pside">${esc(rest.join(". "))}${rest.length ? "." : ""}</p>${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ""}</div>`;
+  };
 
   const board1 = `<article class="tm-board b1" aria-label="Tulips Garden menu, page 1: platters and breakfast">${frame}
     <div class="tm-col">
       ${head("Share the feast", "Platters")}
-      <div class="tm-platter feature">${quad.img ? tile(quad.img, quad.n, { big: true, noCap: true, ribbon: "Signature" }) : ""}${platterBody(quad)}</div>
-      <div class="tm-platter">${fam.imgs ? `<div class="tm-photos n${fam.imgs.length} strip">${fam.imgs.map(k => tile(k, fam.n, { noCap: true })).join("")}</div>` : ""}${platterBody(fam)}</div>
+      <div class="tm-platter"><span class="tm-ribbon">Signature</span>${platterBody(quad)}</div>
+      <div class="tm-platter">${platterBody(fam)}</div>
       <p class="tm-note">${esc(M.platterNote)}</p>
     </div>
     <div class="tm-col">

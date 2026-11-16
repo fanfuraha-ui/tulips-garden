@@ -10,10 +10,10 @@ window.TULIPS_MENU = {
   platters: [
     { n: "Tulips Quad Platter", p: "3,900",
       d: "Beef portion, mbuzi portion, full broiler chicken, 2 choma sausages & greens. Any 3 sides.",
-      tag: "Free 1L Minute Maid", img: "quad-platter" },
+      tag: "Free 1L Minute Maid" },
     { n: "Family Platter", sub: "Serves 6", p: "6,500",
       d: "Beef, pork, mutton & fish fillet portions, full chicken, 4 choma sausages & 2 greens. Any 4 sides.",
-      tag: "Free 1L Minute Maid", imgs: ["beef-meat", "tilapia", "choma-sausages"] }
+      tag: "Free 1L Minute Maid" }
   ],
   /* Photos shown inside the menu boards (website full-screen menu, menu.html and the PDF).
      [photo file in assets/menu/photos/, item name]. The price is looked up from the item name.
