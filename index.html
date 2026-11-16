@@ -223,6 +223,30 @@ textarea{min-height:110px;resize:vertical}
 .gallery .vcard{break-inside:avoid;margin-bottom:1.1rem}
 .gallery .vcard:nth-child(3n){aspect-ratio:3/4}
 
+/* Party life */
+.party{background:radial-gradient(60% 50% at 15% 0%,rgba(212,175,55,.14),transparent 70%),radial-gradient(50% 40% at 100% 100%,rgba(122,20,24,.25),transparent 70%),#050505;border-block:1px solid rgba(212,175,55,.25)}
+.party-head{display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;align-items:end}
+.party-points{list-style:none;display:grid;gap:.8rem}
+.party-points li{padding:.85rem 1rem;border:1px solid rgba(212,175,55,.35);border-radius:14px;background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(0,0,0,.3))}
+.party-points b{display:block;font-family:var(--serif);color:var(--leaf);font-size:1.08rem}
+.party-points span{color:var(--muted);font-size:.92rem}
+.party-vids{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.6rem 0 1rem}
+.party-vids video{width:100%;aspect-ratio:9/14;object-fit:cover;border-radius:18px;border:1px solid rgba(212,175,55,.45);background:#000;box-shadow:0 14px 30px rgba(0,0,0,.5)}
+.party-gallery{columns:4 200px;column-gap:1rem}
+.pg-tile{display:block;width:100%;margin:0 0 1rem;padding:0;border:1px solid rgba(212,175,55,.35);border-radius:16px;overflow:hidden;background:#000;cursor:zoom-in;break-inside:avoid}
+.pg-tile img{display:block;width:100%;height:auto;transition:transform .5s}
+.pg-tile:hover img,.pg-tile:focus-visible img{transform:scale(1.05)}
+.party-cta{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;margin-top:1.6rem}
+.party-note{color:var(--muted);font-size:.85rem;border-left:2px solid var(--leaf);padding-left:.8rem}
+@media(max-width:760px){
+  .party-head{grid-template-columns:1fr;gap:1.4rem}
+  .party-vids,.party-gallery{display:flex;columns:auto;overflow-x:auto;scroll-snap-type:x mandatory;gap:.7rem;margin-inline:-5vw;padding:0 5vw .4rem;scrollbar-width:none}
+  .party-vids::-webkit-scrollbar,.party-gallery::-webkit-scrollbar{display:none}
+  .party-vids video{flex:0 0 46vw;width:46vw;scroll-snap-align:start}
+  .pg-tile{flex:0 0 58vw;margin:0;aspect-ratio:3/4;scroll-snap-align:start}
+  .pg-tile img{height:100%;object-fit:cover}
+}
+
 /* Follow */
 .follow{background:linear-gradient(135deg,#a8841f,#d4af37 40%,#f0d77b);color:#0b0b0b;border-radius:28px;padding:clamp(2rem,5vw,3.5rem);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
 .follow h2{color:#0b0b0b;background:none;-webkit-text-fill-color:#0b0b0b;margin:0}
@@ -589,6 +613,7 @@ a.map{display:block;text-decoration:none;color:inherit}
     <ul id="menu">
       <li><a href="#about">About</a></li>
       <li><a href="#menu-sec">Menu</a></li>
+      <li><a href="#party">Party Life</a></li>
       <li><a href="#swimming">Swimming</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -684,6 +709,49 @@ a.map{display:block;text-decoration:none;color:inherit}
     </div>
     <div class="fg-head reveal"><h3>From our kitchen</h3><p>Tap any photo to see it up close.</p></div>
     <div class="food-gallery" data-food-gallery></div>
+  </div>
+</section>
+
+<!-- PARTY LIFE -->
+<section class="party" id="party">
+  <div class="wrap">
+    <div class="party-head reveal">
+      <div>
+        <span class="eyebrow">Party life · 18+</span>
+        <h2>When the sun sets, the garden comes alive</h2>
+        <p class="lead">Bottles on ice, cocktails, shots and good vibes with your crew. Whether it's a birthday, a girls' night out or the weekend, we set up your table and keep the drinks flowing.</p>
+      </div>
+      <ul class="party-points">
+        <li><b>Bottle service</b><span>Whisky, cognac, vodka and more, served with ice and mixers</span></li>
+        <li><b>Cocktails &amp; shots</b><span>From classics to flaming shots for the whole table</span></li>
+        <li><b>Party tables</b><span>Reserve ahead for birthdays and group nights</span></li>
+      </ul>
+    </div>
+    <div class="party-vids reveal">
+      <video src="assets/party/party-pour.mp4" poster="assets/party/party-pour-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Whisky poured over ice"></video>
+      <video src="assets/party/party-flames.mp4" poster="assets/party/party-flames-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Flaming shots"></video>
+      <video src="assets/party/party-bottles.mp4" poster="assets/party/party-bottles-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Bottles on ice"></video>
+      <video src="assets/party/party-redlabel.mp4" poster="assets/party/party-redlabel-poster.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-label="Johnnie Walker Red Label"></video>
+    </div>
+    <div class="party-gallery">
+      <button type="button" class="pg-tile" data-lg="assets/party/bottle-service-martell-lg.jpg" data-cap="Martell VSOP on ice" aria-label="See a larger photo: Martell VSOP on ice"><img src="assets/party/bottle-service-martell-md.jpg" alt="Martell VSOP on ice" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/flaming-shots-lg.jpg" data-cap="Flaming shots at the bar" aria-label="See a larger photo: Flaming shots at the bar"><img src="assets/party/flaming-shots-md.jpg" alt="Flaming shots at the bar" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/black-label-lg.jpg" data-cap="Johnnie Walker Black Label & Coke" aria-label="See a larger photo: Johnnie Walker Black Label & Coke"><img src="assets/party/black-label-md.jpg" alt="Johnnie Walker Black Label & Coke" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/jager-shots-lg.jpg" data-cap="Jägermeister shots for the crew" aria-label="See a larger photo: Jägermeister shots for the crew"><img src="assets/party/jager-shots-md.jpg" alt="Jägermeister shots for the crew" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/negroni-lg.jpg" data-cap="Signature cocktail" aria-label="See a larger photo: Signature cocktail"><img src="assets/party/negroni-md.jpg" alt="Signature cocktail" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/grants-on-ice-lg.jpg" data-cap="Grant's with an ice bucket" aria-label="See a larger photo: Grant's with an ice bucket"><img src="assets/party/grants-on-ice-md.jpg" alt="Grant's with an ice bucket" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/jack-and-choma-lg.jpg" data-cap="Jack Daniel's with nyama choma" aria-label="See a larger photo: Jack Daniel's with nyama choma"><img src="assets/party/jack-and-choma-md.jpg" alt="Jack Daniel's with nyama choma" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/macallan-lg.jpg" data-cap="The Macallan 12" aria-label="See a larger photo: The Macallan 12"><img src="assets/party/macallan-md.jpg" alt="The Macallan 12" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/lime-cocktail-lg.jpg" data-cap="Rum & lime on the rocks" aria-label="See a larger photo: Rum & lime on the rocks"><img src="assets/party/lime-cocktail-md.jpg" alt="Rum & lime on the rocks" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/bar-counter-lg.jpg" data-cap="Drinks at the bar" aria-label="See a larger photo: Drinks at the bar"><img src="assets/party/bar-counter-md.jpg" alt="Drinks at the bar" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/jack-daniels-lg.jpg" data-cap="Jack Daniel's" aria-label="See a larger photo: Jack Daniel's"><img src="assets/party/jack-daniels-md.jpg" alt="Jack Daniel's" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/night-glass-lg.jpg" data-cap="Late-night pour" aria-label="See a larger photo: Late-night pour"><img src="assets/party/night-glass-md.jpg" alt="Late-night pour" loading="lazy" decoding="async"></button>
+      <button type="button" class="pg-tile" data-lg="assets/party/whisky-ice-lg.jpg" data-cap="Whisky over ice" aria-label="See a larger photo: Whisky over ice"><img src="assets/party/whisky-ice-md.jpg" alt="Whisky over ice" loading="lazy" decoding="async"></button>
+    </div>
+    <div class="party-cta reveal">
+      <a class="btn btn-wa" data-wa="Hi Tulips Garden, I'd like to reserve a party table." target="_blank" rel="noopener">Reserve a party table</a>
+      <p class="party-note">Strictly 18+. ID may be requested. Please drink responsibly and don't drink and drive.</p>
+    </div>
   </div>
 </section>
 
@@ -823,7 +891,7 @@ a.map{display:block;text-decoration:none;color:inherit}
     </div>
     <div>
       <h4>Explore</h4>
-      <ul><li><a href="#menu-sec">Menu</a></li><li><a href="#swimming">Swimming</a></li><li><a href="#events">Events</a></li><li><a href="#reserve">Reservations</a></li></ul>
+      <ul><li><a href="#menu-sec">Menu</a></li><li><a href="#party">Party Life</a></li><li><a href="#swimming">Swimming</a></li><li><a href="#events">Events</a></li><li><a href="#reserve">Reservations</a></li></ul>
     </div>
     <div>
       <h4>Visit</h4>
@@ -977,6 +1045,11 @@ const go=k=>{im[n].classList.remove("on");d[n].classList.remove("on");n=k;im[n].
 const start=()=>{if(!t&&!red)t=setInterval(()=>go((n+1)%im.length),4000)},stop=()=>{clearInterval(t);t=null};
 box.addEventListener("click",()=>go((n+1)%im.length));
 if("IntersectionObserver"in window)new IntersectionObserver(([e])=>e.isIntersecting?start():stop()).observe(box);else start();});})();
+
+/* Party videos: muted, play only while on screen */
+document.querySelectorAll(".party-vids video").forEach(v=>{v.muted=true;
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  if("IntersectionObserver"in window)new IntersectionObserver(([e])=>{if(e.isIntersecting){v.preload="auto";v.play().catch(()=>{})}else v.pause()},{threshold:.3}).observe(v);else v.play().catch(()=>{});});
 
 /* Mobile nav */
 const burger=$(".burger"), menu=$("#menu");
