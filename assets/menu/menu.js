@@ -50,7 +50,7 @@
       <p class="tm-note">${esc(M.platterNote)}</p>
     </div>
     <div class="tm-col">
-      <div class="tm-brand"><img src="assets/tulips-logo.png" alt="Tulips Garden" width="480" height="179"><span class="menu-word">Menu</span><span class="tag">Dine · Relax · Celebrate</span></div>
+      <div class="tm-brand"><img src="assets/tulips-logo.png" alt="Tulips Garden" width="960" height="570"><span class="menu-word">Menu</span><span class="tag">Dine · Relax · Celebrate</span></div>
       ${head("Morning", "Breakfast")}
       ${photos(SP.breakfast, "wide")}
       ${list(M.breakfast)}
@@ -80,7 +80,7 @@
     <div class="tm-col">${head("Little", "Kiddies")}${photos(SP.kids)}${list(M.kids)}</div>
     <div class="tm-col">${head("Side", "Dishes")}${photos(SP.sides)}<p class="tm-sub">Starches</p>${list(M.starches)}<p class="tm-sub">Greens</p>${list(M.greens)}</div>
     <div class="tm-strip">
-      <img src="assets/tulips-logo.png" alt="" width="480" height="179">
+      <img src="assets/tulips-logo-sm.png" alt="" width="480" height="285">
       <div class="txt"><b>Celebrate with us</b><span>Baby showers, birthdays &amp; family gatherings, fully hosted. Garden dining · Swimming pool · Kids' play area</span>
         <span class="ln">${pin}${esc(M.location)}</span><span class="ln">${music}TikTok ${esc(M.tiktok)}</span></div>
       <div class="call"><small>Bookings &amp; events</small><b>${esc(M.phone)}</b></div>
